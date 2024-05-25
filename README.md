@@ -13,11 +13,20 @@ Project workflow and git commits
 
 -   [x] Installation
 -   [x] [Set up Models, Factories, tables](#set-up-models-factories-migrations-and-tables)
--   [x] [Set up Controllers-ProjectController](#set-up-controllers)
+-   [x] [Set up Controllers-ProjectController,TaskControllers](#set-up-controllers)
+-   [x] [Seeding](#seeding)
+-   [x] [Set up routes](#set-up-routes)
+-   [x] [Set up views](#set-up-views)
+
+-   [x] [Filtering](#filtering)
 
 ## #Set up Models,Factories,Tables
 
 ## Set up Models, Factories, migrations and tables
+
+## Seeding
+
+## Filtering
 
 ### Tasks
 
