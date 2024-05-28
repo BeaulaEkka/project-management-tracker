@@ -19,6 +19,7 @@ Project workflow and git commits
 -   [x] [Set up views](#set-up-views)
 -   [x] [Pagination](#pagination)
 -   [x] [Filtering](#filtering)
+-   [] All Tasks Page
 
 ## #Set up Models,Factories,Tables
 
