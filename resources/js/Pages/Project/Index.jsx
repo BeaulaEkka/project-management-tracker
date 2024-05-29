@@ -6,6 +6,7 @@ import { PROJECT_STATUS_CLASS_MAP, PROJECT_STATUS_TEXT_MAP } from "@/constants";
 import TextInput from "@/Components/TextInput";
 import SelectInput from "@/Components/SelectInput";
 import { TableHeading } from "@/Components/TableHeading";
+
 export default function Index({ auth, projects, queryParams = null }) {
   queryParams = queryParams || {};
   const searchFieldChanged = (name, value) => {
@@ -160,7 +161,17 @@ export default function Index({ auth, projects, queryParams = null }) {
                             className="rounded-full w-12 h-12 object-cover"
                           />
                         </td>
-                        <td className="px-3 py-2">{project.name}</td>
+
+                        <td className="px-3 py-2">
+                          {" "}
+                          <Link
+                            href={route("project.show", project.id)}
+                            className="hover:underline hover:font-semibold text-gray-300 text-nowrap"
+                          >
+                            {project.name}
+                          </Link>
+                        </td>
+
                         <td className="px-3 py-2">
                           <span
                             className={
@@ -172,6 +183,7 @@ export default function Index({ auth, projects, queryParams = null }) {
                               "Unknown Status"}
                           </span>
                         </td>
+
                         <td className="px-3 py-2 text-nowrap">
                           {project.created_at}
                         </td>
