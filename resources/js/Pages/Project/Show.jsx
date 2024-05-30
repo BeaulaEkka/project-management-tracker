@@ -5,9 +5,6 @@ import { PROJECT_STATUS_CLASS_MAP, PROJECT_STATUS_TEXT_MAP } from "@/constants";
 import TasksTable from "../Task/TasksTable";
 
 export default function Show({ auth, project, tasks, queryParams }) {
-  console.log("Project:", project);
-  console.log("Tasks:", tasks);
-  console.log("QueryParams:", queryParams);
   return (
     <AuthenticatedLayout
       user={auth.user}
@@ -25,7 +22,7 @@ export default function Show({ auth, project, tasks, queryParams }) {
             <div className="p-6 text-gray-900 dark:text-gray-100">
               <div>
                 <img
-                  src="https://images.pexels.com/photos/7947743/pexels-photo-7947743.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                  src={project.image_path}
                   alt=""
                   className="w-full h-64 object-cover"
                 />
