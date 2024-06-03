@@ -21,6 +21,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'position',
+        'joining_date',
+        'image_path',
+
     ];
 
     /**
@@ -45,4 +49,10 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
 }

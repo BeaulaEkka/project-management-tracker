@@ -19,6 +19,7 @@ export default function Create({ auth, project }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
     post(route("project.update", project.id));
   };
 

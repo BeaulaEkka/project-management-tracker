@@ -108,21 +108,25 @@ class ProjectController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UpdateProjectRequest $request, Project $project)
-    {
+    // {
 
+    {
         $data = $request->validated();
-        $image = $data['image'] ?? null;
+        $image = $request->file('image'); // Use `file` specifically for image uploads
+
         $data['created_by'] = Auth::id();
         $data['updated_by'] = Auth::id();
 
+        // Only update image if a new file is uploaded
         if ($image) {
+            // Check if existing image path exists (avoid unnecessary deletion)
             if ($project->image_path) {
                 Storage::disk('public')->deleteDirectory(dirname($project->image_path));
             }
-            $data['image_path'] = $image->store('project/' . Str::random(), 'public');
-        };
 
-        $data = $request->validated();
+            $data['image_path'] = $image->store('project/' . Str::random(), 'public');
+        }
+
         $project->update($data);
 
         return to_route('project.index')->with('success', "Project \"$project->name\" was updated");
