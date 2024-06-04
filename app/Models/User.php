@@ -24,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'position',
         'joining_date',
         'image_path',
+        'email_verified_at',
 
     ];
 

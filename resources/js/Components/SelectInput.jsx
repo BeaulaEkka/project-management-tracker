@@ -14,19 +14,6 @@ export default forwardRef(function SelectInput(
         className
       }
       ref={input}
-    >
-      <option value="" className="value">
-        Select Status
-      </option>
-      <option value="pending" className="value">
-        Pending
-      </option>
-      <option value="in_Progress" className="value">
-        In Progress
-      </option>
-      <option value="completed" className="value">
-        Completed
-      </option>
-    </select>
+    ></select>
   );
 });

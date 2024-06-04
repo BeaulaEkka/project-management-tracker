@@ -8,6 +8,7 @@ import { TableHeading } from "@/Components/TableHeading";
 
 export default function TasksTable({
   tasks,
+  success,
   queryParams = null,
   hideProjectColumn = false,
 }) {
@@ -40,9 +41,20 @@ export default function TasksTable({
     router.get(route("task.index"), queryParams);
   };
 
+  const deleteTask = (task) => {
+    if (!window.confirm("Are you sure you want to delete this task?")) {
+      return;
+    }
+    router.delete(route("task.destroy", task.id));
+  };
+
   return (
     <>
-      {" "}
+      {success && (
+        <div className="bg-emerald-500 mb-4 py-2 px-4 text-white rounded">
+          {success}
+        </div>
+      )}
       <div className="overflow-auto">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
@@ -115,9 +127,9 @@ export default function TasksTable({
               <th className="px-3 py-3"></th>
               <th className="px-3 py-3">
                 <TextInput
-                  className="w-full "
+                  className="w-full Capitalize"
                   defaultValue={queryParams.name}
-                  placeholder="task Name"
+                  placeholder="Task Name"
                   onBlur={(e) => searchFieldChanged("name", e.target.value)}
                   onKeyPress={(e) => onKeyPress("name", e)}
                 />
@@ -128,7 +140,13 @@ export default function TasksTable({
                   defaultValue={queryParams.status}
                   queryParams={queryParams}
                   onChange={(e) => searchFieldChanged("status", e.target.value)}
-                ></SelectInput>
+                >
+                  {" "}
+                  <option value="0">Select Status</option>
+                  <option value="pending">Pending</option>
+                  <option value="completed">Completed</option>
+                  <option value="in_Progress">In Progress</option>
+                </SelectInput>
               </th>
               <th className="px-3 py-3"></th>
               <th className="px-3 py-3"></th>
@@ -154,12 +172,17 @@ export default function TasksTable({
                 </td>
                 {!hideProjectColumn && (
                   <td className="px-3 py-2">{task.project.name}</td>
-                )}
-                <td className="px-3 py-2">{task.name}</td>
+                )}{" "}
+                <Link
+                  href={route("task.show", task.id)}
+                  className="hover:underline hover:font-semibold text-gray-300 text-nowrap"
+                >
+                  <th className="px-3 py-2">{task.name}</th>
+                </Link>
                 <td className="px-3 py-2">
                   <span
                     className={
-                      "px-3 py-1 rounded text-white " +
+                      "px-3 py-1 rounded text-white text-nowrap " +
                       TASK_STATUS_CLASS_MAP[task.status]
                     }
                   >
@@ -176,12 +199,12 @@ export default function TasksTable({
                   >
                     Edit
                   </Link>
-                  <Link
-                    href={route("task.destroy", task.id)}
+                  <button
+                    onClick={(e) => deleteTask(task)}
                     className="text-red-600 dark:text-red-500 hover:underline mx-1"
                   >
                     Delete
-                  </Link>
+                  </button>
                 </td>
               </tr>
             ))}

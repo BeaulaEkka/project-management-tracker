@@ -159,7 +159,13 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                           onChange={(e) =>
                             searchFieldChanged("status", e.target.value)
                           }
-                        ></SelectInput>
+                        >
+                          {" "}
+                          <option value="0">Select Status</option>
+                          <option value="pending">Pending</option>
+                          <option value="completed">Completed</option>
+                          <option value="in_Progress">In Progress</option>
+                        </SelectInput>
                       </th>
                       <th className="px-3 py-3"></th>
                       <th className="px-3 py-3"></th>
@@ -196,7 +202,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         <td className="px-3 py-2">
                           <span
                             className={
-                              "px-3 py-1 rounded text-white " +
+                              "px-3 py-1 rounded text-white text-nowrap " +
                               PROJECT_STATUS_CLASS_MAP[project.status]
                             }
                           >

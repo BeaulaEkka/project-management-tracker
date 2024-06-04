@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $query = User::query();
-        
+
         $sortField = request('sort_field', 'created_at');
         $sortDirection = request('sort_direction', 'desc');
         if (request('name')) {
@@ -49,6 +49,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->validated();
+        $data['email_verified_at'] = time();
         $data['password'] = bcrypt($data['password']);
         /** @var $image \Illuminate\Http\Uploaded File */
         $image = $data['image'] ?? null;
@@ -94,9 +95,10 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $data = $request->validated();
+
         $password = $data['password'] ?? null;
         if ($password) {
-            $data['password'] = bcrypt($data['$password']);
+            $data['password'] = bcrypt($data['password']);
         } else {
             unset($data['password']);
         }
@@ -124,7 +126,6 @@ class UserController extends Controller
     {
 
         $name = $user->name;
-
         $user->delete();
         if ($user->image_path) {
             Storage::disk('public')->deleteDirectory(dirname($user->image_path));
