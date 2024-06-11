@@ -4,6 +4,7 @@ import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
+import ThemeToggle from "@/Components/ThemeToggle";
 
 export default function Authenticated({ user, header, children }) {
   const [showingNavigationDropdown, setShowingNavigationDropdown] =
@@ -60,8 +61,11 @@ export default function Authenticated({ user, header, children }) {
             </div>
 
             <div className="hidden sm:flex sm:items-center sm:ms-6">
+            <ThemeToggle />
               <div className="ms-3 relative">
+
                 <Dropdown>
+
                   <Dropdown.Trigger>
                     <span className="inline-flex rounded-md">
                       <button

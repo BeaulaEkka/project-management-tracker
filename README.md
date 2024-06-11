@@ -23,13 +23,16 @@ Project workflow and git commits
 - [x] [Creating New Project(CRUD)](#creating-new-projectcrud)
 - [x] [useForm(from Inertia)](#useformfrom-inertia)
 - [x] [File Storage ( handle image upload)](#file-storage--handle-image-upload)
+- [x] [ThemeToggle](#theme-toggle-dark-and-light)
 
 ## #Set up Models,Factories,Tables
 
 ## Set up Models, Factories, migrations and tables
 
 ## Seeding
+
 ## set-up-views
+
 ## Set up routes
 
 ## Pagination
@@ -63,3 +66,5 @@ Created TaskController, ProjectController, UserController with --model=<MODELNAM
 ## useForm(from Inertia)
 
 ## File Storage ( handle image upload)
+
+## Theme Toggle (dark and light)
