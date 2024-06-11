@@ -6,15 +6,11 @@ import { Head, Link } from "@inertiajs/react";
 
 export default function Dashboard({
   auth,
-  totalPendingTasks,
   myPendingTasks,
-  totalCompletedTasks,
   myCompletedTasks,
-  totalInProgressTasks,
   myInProgressTasks,
   pieData,
   myCreatedTasks,
-  barData,
   activeTasks,
   activeTaskCount,
   topPerformers,
@@ -36,9 +32,9 @@ export default function Dashboard({
         <div className=" flex justify-between max-w-7xl mx-auto px-10 lg:px-8 py-6 ">
           <div className="text-gray-800 dark:text-gray-200 ">
             <div className="mb-5 capitalize">
-              <p className="text-gray-500 text-lg">Hello, {auth.user.name}!</p>
+              <p className="text-gray-500 text-md">Hello, {auth.user.name}!</p>
             </div>
-            <h1 className="font-bold text-2xl  text-gray-800 dark:text-gray-400 capitalize">
+            <h1 className="font-bold text-xl  text-gray-800 dark:text-gray-400 capitalize">
               You have {myInProgressTasks + myPendingTasks} tasks to do!
             </h1>
           </div>
@@ -73,7 +69,7 @@ export default function Dashboard({
               <div className="bg-teal-600 w-1 h-full absolute"></div>
               <div className="p-6 text-gray-900 dark:text-gray-100 flex justify-between text-wrap text-left">
                 <div>
-                  <p className=" text-xl font-semibold text-teal-300">
+                  <p className=" text-lg font-semibold text-teal-300">
                     My Completed Tasks
                   </p>
                   <p className="mt-4 text-gray-300 text-xl font-bold">
@@ -87,7 +83,7 @@ export default function Dashboard({
               <div className="bg-cyan-400 w-1 h-full absolute"></div>
               <div className="p-6 text-gray-900 dark:text-gray-100 flex justify-between text-wrap text-left">
                 <div>
-                  <p className=" text-xl font-semibold text-cyan-400">
+                  <p className=" text-lg font-semibold text-cyan-400">
                     My In-Progress Tasks
                   </p>
                   <p className="mt-4 text-gray-300 text-xl font-bold">
@@ -101,7 +97,7 @@ export default function Dashboard({
               <div className="bg-rose-400 w-1 h-full absolute"></div>
               <div className="p-6 text-gray-900 dark:text-gray-100 flex justify-between text-wrap text-left">
                 <div>
-                  <p className=" text-xl font-semibold text-rose-400">
+                  <p className=" text-lg font-semibold text-rose-400">
                     My Pending Tasks
                   </p>
                   <p className="mt-4 text-gray-300 text-xl font-bold">
@@ -114,7 +110,7 @@ export default function Dashboard({
               <div className="bg-violet-400 w-1 h-full absolute"></div>
               <div className="p-6 text-gray-900 dark:text-gray-100 flex justify-between text-wrap text-left">
                 <div>
-                  <p className=" text-xl font-semibold text-violet-400">
+                  <p className=" text-lg font-semibold text-violet-400">
                     My Created Tasks
                   </p>
                   <p className="mt-4 text-gray-300 text-xl font-bold">

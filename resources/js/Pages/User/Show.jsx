@@ -17,9 +17,6 @@ export default function Show({
   success,
   error,
 }) {
-  console.log("success user page", success);
-  console.log("success user page", error);
-
   const calculateProgress = (createdAt, dueDate) => {
     const today = new Date().getTime();
     const startDate = new Date(createdAt).getTime();
@@ -49,7 +46,6 @@ export default function Show({
       }
     >
       <Head title={`User "${user.name}"`} />
-      {/* <pre>{JSON.stringify(tasks)}</pre> */}
 
       <div className="py-12 ">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -186,6 +182,7 @@ export default function Show({
                               task.created_at,
                               task.due_date
                             )}
+                            status={task.status}
                           />
                         </td>
                         <td className="px-3 py-2 text-nowrap">

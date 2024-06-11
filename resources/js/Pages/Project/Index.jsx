@@ -257,6 +257,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                               project.created_at,
                               project.due_date
                             )}
+                            status={project.status}
                           />
                         </td>
 

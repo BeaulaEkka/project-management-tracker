@@ -6,6 +6,7 @@ import TextInput from "@/Components/TextInput";
 import SelectInput from "@/Components/SelectInput";
 import { TableHeading } from "@/Components/TableHeading";
 import RandomBackground from "@/Components/RandomBackground";
+import { ProgressBar } from "@/Components/ProgressBar";
 
 export default function TasksTable({
   tasks,
@@ -48,6 +49,19 @@ export default function TasksTable({
       return;
     }
     router.delete(route("task.destroy", task.id));
+  };
+
+  const calculateProgress = (createdAt, dueDate) => {
+    const today = new Date().getTime();
+    const startDate = new Date(createdAt).getTime();
+    const endDate = new Date(dueDate).getTime();
+
+    let progress = Math.max(
+      0,
+      Math.min(1, (today - startDate) / (endDate - startDate))
+    );
+
+    return progress;
   };
 
   return (
@@ -111,6 +125,8 @@ export default function TasksTable({
                 Due Date
               </TableHeading>
 
+              <th className="px-8">TimeLine</th>
+
               <TableHeading
                 title="created_by"
                 sort_field={queryParams.sort_field}
@@ -125,6 +141,7 @@ export default function TasksTable({
 
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 bprder-gray-500">
             <tr className="text-nowwrap">
+              <th className="px-3 py-3"></th>
               <th className="px-3 py-3"></th>
               <th className="px-3 py-3"></th>
               <th className="px-3 py-3">
@@ -196,6 +213,12 @@ export default function TasksTable({
                 </td>
                 <td className="px-3 py-2 text-nowrap">{task.created_at}</td>
                 <td className="px-3 py-2 text-nowrap">{task.due_date}</td>
+                <td className="px-3 py-2 text-nowrap">
+                  <ProgressBar
+                    progress={calculateProgress(task.created_at, task.due_date)}
+                    status={task.status}
+                  />
+                </td>
                 <td className="px-3 py-2 capitalize">{task.createdBy.name}</td>
                 <td className="px-3 py-2 text-nowrap">
                   <Link
