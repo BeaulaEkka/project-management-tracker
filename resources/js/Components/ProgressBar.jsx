@@ -13,9 +13,12 @@ export const ProgressBar = ({ progress }) => {
 
   return (
     <div className="w-68 h-5">
-      <div className="w-full h-full bg-gray-700 rounded-lg">
-        <div style={innerBarStyle} className="px-2 ">
-          <span className="text-sm flex justify-end italic font-bold">
+      <div className="w-full h-full bg-gray-700 rounded-lg relative">
+        <div
+          style={innerBarStyle}
+          className="px-3 h-full flex justify-center items-center"
+        >
+          <span className="text-xs italic font-semibold text-white">
             {progressText}
           </span>
         </div>

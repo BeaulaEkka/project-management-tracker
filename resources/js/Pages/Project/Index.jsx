@@ -1,13 +1,17 @@
 import React from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link, router } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import { Pagination } from "@/Components/Pagination";
 import { PROJECT_STATUS_CLASS_MAP, PROJECT_STATUS_TEXT_MAP } from "@/constants";
 import TextInput from "@/Components/TextInput";
 import SelectInput from "@/Components/SelectInput";
 import { TableHeading } from "@/Components/TableHeading";
+import { ProgressBar } from "@/Components/ProgressBar";
+import RandomBackground from "@/Components/RandomBackground";
 
 export default function Index({ auth, projects, queryParams = null, success }) {
+  const { errors } = usePage().props;
+
   queryParams = queryParams || {};
   const searchFieldChanged = (name, value) => {
     if (value) {
@@ -36,6 +40,19 @@ export default function Index({ auth, projects, queryParams = null, success }) {
     }
 
     router.get(route("project.index"), queryParams);
+  };
+
+  const calculateProgress = (createdAt, dueDate) => {
+    const today = new Date().getTime();
+    const startDate = new Date(createdAt).getTime();
+    const endDate = new Date(dueDate).getTime();
+
+    let progress = Math.max(
+      0,
+      Math.min(1, (today - startDate) / (endDate - startDate))
+    );
+
+    return progress;
   };
 
   const deleteProject = (project) => {
@@ -68,6 +85,9 @@ export default function Index({ auth, projects, queryParams = null, success }) {
           {success && (
             <div className="bg-emerald-500 mb-4 py-2 px-4 text-white rounded">
               {success}
+              {errors.error && (
+                <div className="alert alert-danger">{errors.error}</div>
+              )}
             </div>
           )}
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -125,6 +145,15 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                       </TableHeading>
 
                       <TableHeading
+                        title="timeline"
+                        sort_field={queryParams.sort_field}
+                        sort_direction={queryParams.sort_direction}
+                        sortChanged={sortChanged}
+                      >
+                        <div className="w-32 ml-2 ">Timeline</div>
+                      </TableHeading>
+
+                      <TableHeading
                         title="created_by"
                         sort_field={queryParams.sort_field}
                         sort_direction={queryParams.sort_direction}
@@ -138,6 +167,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
 
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 bprder-gray-500">
                     <tr className="text-nowwrap">
+                      <th className="px-3 py-3"></th>
                       <th className="px-3 py-3"></th>
                       <th className="px-3 py-3"></th>
                       <th className="px-3 py-3">
@@ -181,11 +211,13 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         key={project.id}
                       >
                         <td className="px-3 py-2">{project.id}</td>
-                        <td className="px-3 py-2 ">
-                          <img
-                            src={project.image_path}
-                            alt=""
-                            className="rounded-full w-12 h-12 object-cover"
+                        <td className="px-3 py-2 rounded-full w-12 h-12 object-cover">
+                          {/* No image needed here */}
+                          <RandomBackground
+                            project={project}
+                            shape="round"
+                            width="48px"
+                            height="48px"
                           />
                         </td>
 
@@ -217,8 +249,26 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         <td className="px-3 py-2 text-nowrap">
                           {project.due_date}
                         </td>
-                        <td className="px-3 py-2">{project.createdBy.name}</td>
-                        <td className="px-3 py-2">
+
+                        {/**timeline */}
+                        <td className="px-3 py-2 text-nowrap">
+                          <ProgressBar
+                            progress={calculateProgress(
+                              project.created_at,
+                              project.due_date
+                            )}
+                          />
+                        </td>
+
+                        <td className="px-3 py-2 capitalize">
+                          <Link
+                            href={route("user.show", project.createdBy.id)}
+                            className="hover:font-bold hover:underline hover:text-orange-400"
+                          >
+                            {project.createdBy.name}
+                          </Link>
+                        </td>
+                        <td className="px-3 py-2 text-nowrap">
                           <Link
                             href={route("project.edit", project.id)}
                             className="text-blue-600 dark:text-blue-500 hover:underline mx-1"

@@ -11,6 +11,7 @@ use App\Models\Project;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -61,6 +62,15 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         $data = $request->validated();
+
+        // Log the fromUserPage value for debugging
+        Log::info('fromUserPage: ' . $request->fromUserPage);
+
+        $userId = Auth::id();
+        if (!$userId) {
+            return redirect()->route('login')->with('error', 'You must be logged in to create a task.');
+        }
+
         /** @var $image \Illuminate\Http\Uploaded File */
         $image = $data['image'] ?? null;
         $data['created_by'] = Auth::id();
@@ -71,8 +81,18 @@ class TaskController extends Controller
         };
 
         Task::create($data);
+
+        // if ($request->has('fromUserPage') && $request->fromUserPage) {
+        //     return redirect()->route('user.show', $userId)->with('success', 'Task was successfully created');
+        // }
+
+        if ($request->fromUserPage) {
+            return redirect()->route('user.show', $userId)->with('success', 'Task was successfully created');
+        }
+
         return to_route('task.index')
             ->with('success', 'Task was successfully created');
+
     }
 
     /**
@@ -108,11 +128,20 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
+
+        Log::info('fromUserPage value Edit:', [$request->input('fromUserPage')]);
+        Log::info('Request parameters:', $request->all());
+
         $data = $request->validated();
         $image = $request->file('image'); // Use `file` specifically for image uploads
 
         $data['created_by'] = Auth::id();
         $data['updated_by'] = Auth::id();
+
+        $userId = Auth::id();
+        if (!$userId) {
+            return redirect()->route('login')->with('error', 'You must be logged in to create a task.');
+        }
 
         // Only update image if a new file is uploaded
         if ($image) {
@@ -126,7 +155,15 @@ class TaskController extends Controller
 
         $task->update($data);
 
+        // Check if the request came from the user page
+        if (request('fromUserPage')) {
+            return redirect()->route('user.show',
+                [$task->assigned_user_id])
+                ->with('success', "Task \"$task->name\" was successfully updated");
+        }
+
         return to_route('task.index')->with('success', "Task \"$task->name\" was updated");
+
     }
 
     /**
@@ -147,7 +184,7 @@ class TaskController extends Controller
     public function myTasks()
     {
         $user = auth()->user();
-        $query = Task::query()->where('assigned_user_id',$user->id);
+        $query = Task::query()->where('assigned_user_id', $user->id);
 
         $sortField = request('sort_field', 'created_at');
         $sortDirection = request('sort_direction', 'desc');

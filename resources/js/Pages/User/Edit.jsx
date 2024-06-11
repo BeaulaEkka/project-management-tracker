@@ -119,23 +119,43 @@ export default function Create({ auth, user }) {
                     htmlFor="user_joining_date"
                     value="Joining Date"
                   />
-                  <TextInput
-                    id="user_joining_date"
-                    type="date"
-                    name="joining_date"
-                    value={data.joining_date}
-                    className="mt-1 block w-full"
-                    onChange={(e) => setData("joining_date", e.target.value)}
-                  />{" "}
+                  <div class="relative focus-within:text-blue-500">
+                    <TextInput
+                      id="user_joining_date"
+                      type="date"
+                      name="joining_date"
+                      value={data.joining_date}
+                      className="mt-1 block w-full "
+                      onChange={(e) => setData("joining_date", e.target.value)}
+                    />
+                    {/* Style the calendar icon */}
+                    <svg
+                      class="w-6 h-6 text-gray-800 dark:text-gray-400 absolute right-0 top-0 mt-2 mr-2  pointer-events-none"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"
+                      />
+                    </svg>
+                  </div>
                   <InputError message={errors.joining_date} className="mt-2" />
                   {/* Position */}
-                  <InputLabel htmlFor="user_position" value="Position" />
+                  <InputLabel htmlFor="position" value="position" />
                   <TextInput
-                    id="user_position"
-                    type="string"
+                    id="position"
+                    type="text"
                     name="position"
                     value={data.position}
-                    className="mt-1 block w-full h-10"
+                    className="mt-1 block w-full"
                     onChange={(e) => setData("position", e.target.value)}
                   />{" "}
                   <InputError message={errors.position} className="mt-2" />

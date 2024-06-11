@@ -9,7 +9,7 @@ export default function Index({ auth, tasks, success, queryParams = null }) {
       header={
         <div className="flex justify-between">
           <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight ca">
-            tasks
+            Tasks
           </h2>
           <Link
             href={route("task.create")}

@@ -5,6 +5,7 @@ import { TASK_STATUS_CLASS_MAP, TASK_STATUS_TEXT_MAP } from "@/constants";
 import TextInput from "@/Components/TextInput";
 import SelectInput from "@/Components/SelectInput";
 import { TableHeading } from "@/Components/TableHeading";
+import RandomBackground from "@/Components/RandomBackground";
 
 export default function TasksTable({
   tasks,
@@ -21,6 +22,7 @@ export default function TasksTable({
     }
     router.get(route("task.index"), queryParams);
   };
+  console.log("success from Task", success);
 
   const onKeyPress = (name, e) => {
     if (e.key !== "Enter") return;
@@ -164,21 +166,24 @@ export default function TasksTable({
               >
                 <td className="px-3 py-2">{task.id}</td>
                 <td className="px-3 py-2 ">
-                  <img
-                    src={task.image_path}
-                    alt=""
-                    className="rounded-full w-12 h-12 object-cover"
+                  <RandomBackground
+                    project={task}
+                    shape="round"
+                    width="48px"
+                    height="48px"
                   />
                 </td>
                 {!hideProjectColumn && (
-                  <td className="px-3 py-2">{task.project.name}</td>
+                  <td className="px-3 py-2 capitalize">{task.project.name}</td>
                 )}{" "}
-                <Link
-                  href={route("task.show", task.id)}
-                  className="hover:underline hover:font-semibold text-gray-300 text-nowrap"
-                >
-                  <th className="px-3 py-2">{task.name}</th>
-                </Link>
+                <td>
+                  <Link
+                    href={route("task.show", task.id)}
+                    className="hover:underline hover:font-semibold text-gray-300 text-nowrap "
+                  >
+                    <th className="px-3 py-2 capitalize">{task.name}</th>
+                  </Link>
+                </td>
                 <td className="px-3 py-2">
                   <span
                     className={
@@ -191,8 +196,8 @@ export default function TasksTable({
                 </td>
                 <td className="px-3 py-2 text-nowrap">{task.created_at}</td>
                 <td className="px-3 py-2 text-nowrap">{task.due_date}</td>
-                <td className="px-3 py-2">{task.createdBy.name}</td>
-                <td className="px-3 py-2">
+                <td className="px-3 py-2 capitalize">{task.createdBy.name}</td>
+                <td className="px-3 py-2 text-nowrap">
                   <Link
                     href={route("task.edit", task.id)}
                     className="text-blue-600 dark:text-blue-500 hover:underline mx-1"

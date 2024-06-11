@@ -1,6 +1,6 @@
 import React from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
@@ -8,17 +8,39 @@ import TextAreaInput from "@/Components/TextAreaInput";
 import SelectInput from "@/Components/SelectInput";
 
 export default function Create({ auth, projects, users }) {
-  const { data, setData, post, processing, errors, reset } = useForm({
+  const { query } = usePage().props || {};
+  console.log("usePage props:", usePage().props); // Debug line
+
+  // Fallback check using window.location.search if query is not found
+  const searchParams = new URLSearchParams(window.location.search);
+  const fromUserPage =
+    query?.fromUserPage === "1" || searchParams.get("fromUserPage") === "1";
+  console.log("fromUserPage:", fromUserPage); // Debug line
+
+  const { data, setData, post, processing, errors, reset, success } = useForm({
     image: "",
     name: "",
     status: "",
     description: "",
     due_date: "",
+    fromUserPage,
   });
+  console.log("success-create task from", success);
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   post(route("task.store"));
+  // };
+
+  // const [successMessage, setSuccessMessage] = useState(null); // New st
 
   const onSubmit = (e) => {
     e.preventDefault();
-    post(route("task.store"));
+    post(route("task.store"), {
+      data,
+      onSuccess: () => {
+        reset();
+      },
+    });
   };
 
   return (
@@ -100,15 +122,34 @@ export default function Create({ auth, projects, users }) {
                   <InputError message={errors.description} className="mt-2" />
                   {/* task_due_date */}
                   <InputLabel htmlFor="task_due_date" value="Task Deadline" />
-                  <TextInput
-                    id="task_due_date"
-                    type="Date"
-                    name="due_date"
-                    value={data.due_date}
-                    className="mt-1 block w-full"
-                    isFocused={true}
-                    onChange={(e) => setData("due_date", e.target.value)}
-                  />{" "}
+                  <div className="relative">
+                    <TextInput
+                      id="task_due_date"
+                      type="Date"
+                      name="due_date"
+                      value={data.due_date}
+                      className="mt-1 block w-full"
+                      isFocused={true}
+                      onChange={(e) => setData("due_date", e.target.value)}
+                    />
+                    <svg
+                      class="w-6 h-6 text-gray-800 dark:text-gray-500 absolute right-0 top-0 mt-2 mr-2  pointer-events-none"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"
+                      />
+                    </svg>
+                  </div>
                   <InputError message={errors.due_date} className="mt-2" />
                   {/* task_status */}
                   <InputLabel htmlFor="task_status" value="Task Status" />
@@ -166,8 +207,14 @@ export default function Create({ auth, projects, users }) {
                   <InputError
                     message={errors.assigned_user_id}
                     className="mt-2"
+                  />{" "}
+                  <input
+                    type="hidden"
+                    name="fromUserPage"
+                    value={fromUserPage}
                   />
                 </div>
+
                 {/*buttons*/}
                 <div className="mt-4 text-right">
                   <Link href={route("task.index")}>

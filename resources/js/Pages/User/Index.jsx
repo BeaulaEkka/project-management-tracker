@@ -168,8 +168,8 @@ export default function Index({ auth, users, queryParams = null, success }) {
                         <td className="px-3 py-2 ">
                           <img
                             src={user.image_path}
-                            alt=""
-                            className="rounded-full w-12 h-12 object-cover"
+                            alt={user.name}
+                            className=" rounded-full w-full h-full object-cover lg:w-12 lg:h-12"
                           />
                         </td>
 
@@ -192,7 +192,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
                           {user.joining_date}
                         </td>
 
-                        <td className="px-3 py-2">
+                        <td className="px-3 py-2 text-nowrap">
                           <Link
                             href={route("user.edit", user.id)}
                             className="text-blue-600 dark:text-blue-500 hover:underline mx-1"

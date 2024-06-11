@@ -19,6 +19,7 @@ class ProjectController extends Controller
     public function index()
     {
         $query = Project::query();
+
         $sortField = request('sort_field', 'created_at');
         $sortDirection = request('sort_direction', 'desc');
 
@@ -28,8 +29,8 @@ class ProjectController extends Controller
         if (request('status')) {
             $query->where('status', request('status'));
         }
-        $projects = $query->orderBy($sortField, $sortDirection)->paginate(10);
-        // ->onEachSide(1);
+        $projects = $query->orderBy($sortField, $sortDirection)->paginate(10)
+            ->onEachSide(1);
 
         return inertia('Project/Index', [
             'projects' => ProjectResource::collection($projects),
@@ -83,8 +84,9 @@ class ProjectController extends Controller
             $query->where('status', request('status'));
         }
 
-        $tasks = $project->tasks()->orderBy('id', 'desc')
-            ->paginate(10)->onEachSide(1);
+        $tasks = $query->orderBy($sortField, $sortDirection)
+            ->paginate(10)
+            ->onEachSide(1);
 
         return inertia('Project/Show', [
             'project' => new ProjectResource($project),
@@ -112,14 +114,11 @@ class ProjectController extends Controller
 
     {
         $data = $request->validated();
-        $image = $request->file('image'); // Use `file` specifically for image uploads
+        $image = $request->file('image');
 
-        $data['created_by'] = Auth::id();
         $data['updated_by'] = Auth::id();
 
-        // Only update image if a new file is uploaded
         if ($image) {
-            // Check if existing image path exists (avoid unnecessary deletion)
             if ($project->image_path) {
                 Storage::disk('public')->deleteDirectory(dirname($project->image_path));
             }
@@ -129,7 +128,7 @@ class ProjectController extends Controller
 
         $project->update($data);
 
-        return to_route('project.index')->with('success', "Project \"$project->name\" was updated");
+        return to_route('project.show', $project->id)->with('success', "Project \"$project->name\" was updated");
     }
 
     /**
@@ -137,14 +136,15 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-
         $name = $project->name;
 
         $project->delete();
+
         if ($project->image_path) {
             Storage::disk('public')->deleteDirectory(dirname($project->image_path));
         }
         return to_route('project.index')
             ->with('success', "Project \"$name\" was successfully deleted");
     }
+
 }

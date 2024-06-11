@@ -18,8 +18,17 @@ return new class extends Migration
             $table->string('image_path')->nullable();
             $table->string('status');
             $table->timestamp('due_date')->nullable();
-            $table->foreignId('created_by')->constrained('users');
-            $table->foreignId('updated_by')->nullable()->constrained('projects');
+            $table->foreignId('created_by')
+                ->nullable()
+                ->constrained('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreignId('updated_by')
+                ->nullable()->constrained('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

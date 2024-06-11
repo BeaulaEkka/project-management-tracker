@@ -1,9 +1,10 @@
 import React from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import { PROJECT_STATUS_CLASS_MAP, PROJECT_STATUS_TEXT_MAP } from "@/constants";
 import TasksTable from "../Task/TasksTable";
 import { ProgressBar } from "@/Components/ProgressBar";
+import RandomBackground from "@/Components/RandomBackground";
 
 export default function Show({ auth, project, tasks, queryParams, success }) {
   const today = new Date().getTime();
@@ -14,35 +15,54 @@ export default function Show({ auth, project, tasks, queryParams, success }) {
     0,
     Math.min(1, (today - startDate) / (dueDate - startDate))
   );
-  console.log("progress:", progress);
 
   return (
     <AuthenticatedLayout
       user={auth.user}
       header={
-        <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-          {`Project "${project.name}"`}
-        </h2>
+        <div className="flex justify-between">
+          <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {`Project :  ${project.name}`}
+          </h2>
+          <Link
+            href={route("project.edit", project.id)}
+            className="bg-emerald-500 py-2 px-3 text-white rounded shadow transition-all hover:bg-emerald-600 font-semibold"
+          >
+            Edit Project
+          </Link>
+        </div>
       }
     >
       <Head title={`Project "${project.name}"`} />
       {/* <pre>{JSON.stringify(project)}</pre> */}
-      <div className="py-12">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-            <div className="p-6 text-gray-900 dark:text-gray-100">
-              <div>
-                <img
-                  src={project.image_path}
-                  alt=""
-                  className="w-full h-64 object-cover"
-                />
-              </div>
+      <div className="py-12 ">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
+          <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg ">
+            <div className=" p-6 text-gray-900 dark:text-gray-100">
+              <div className="text-gray-900 dark:text-gray-100">
+                {/* <RandomBackground
+                  project={project}
+                  shape="rectangle"
+                  width="100%"
+                  height="250px"
 
+                /> */}
+                <div className="relative">
+                  <RandomBackground
+                    project={project}
+                    shape="rectangle"
+                    width="100%"
+                    height="250px"
+                  />
+                  <span className="absolute top-[32%] left-1/2 transform -translate-x-1/2 text-4xl px-4 capitalize bg-black/50 rounded-md py-4 text-center font-bold">
+                    {project.name}
+                  </span>
+                </div>
+              </div>
               <p className=" mt-5">{project.description}</p>
-              <div className="grid gap-12 grid-cols-2 ">
+              <div className="grid gap-12 lg:grid-cols-2 sm:grid-cols-1">
                 <div className=" mt-5">
-                  <div className="grid gap-2 grid-cols-2 mt-5">
+                  <div className="grid gap-2 grid-cols-2 mt-5 ">
                     <div className="font-bold">Project Id :</div>
                     <div>{project.id}</div>
                   </div>
@@ -56,7 +76,7 @@ export default function Show({ auth, project, tasks, queryParams, success }) {
                     <div className="font-bold">Project Status :</div>
                     <div
                       className={
-                        "px-3 py-1 rounded text-white font-bold capitalize " +
+                        "px-3 py-1 rounded text-white font-bold capitalize text-nowwrap " +
                         PROJECT_STATUS_CLASS_MAP[project.status]
                       }
                     >
@@ -65,7 +85,7 @@ export default function Show({ auth, project, tasks, queryParams, success }) {
                     </div>
                   </div>
 
-                  <div className="grid gap-2 grid-cols-2 mt-5">
+                  <div className="grid gap-2 grid-cols-2 mt-5 capitalize">
                     <div className="font-bold">Created By :</div>
                     {/* <pre>{JSON.stringify(project)}</pre> */}
                     <div>{project.createdBy.name}</div>
@@ -82,7 +102,7 @@ export default function Show({ auth, project, tasks, queryParams, success }) {
                     <div>{project.created_at}</div>
                   </div>
 
-                  <div className="grid gap-2 grid-cols-2 mt-5 ">
+                  <div className="grid gap-2 grid-cols-2 mt-5 capitalize">
                     <div className="font-bold">Updated By :</div>
                     <div>{project.updatedBy.name}</div>
                   </div>
@@ -103,7 +123,18 @@ export default function Show({ auth, project, tasks, queryParams, success }) {
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900 dark:text-gray-100 text-lg font-bold mb-6">
-              <h1>{project.name}</h1>
+              <div className="mb-12 flex justify-between">
+                <h1 className="">{project.name}</h1>
+
+                <div>
+                  <Link
+                    href={route("task.create")}
+                    className="bg-emerald-500 py-2 px-3 text-white rounded shadow transition-all hover:bg-emerald-600 font-semibold"
+                  >
+                    Add New
+                  </Link>
+                </div>
+              </div>
 
               <TasksTable
                 tasks={tasks}

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\CrudUserResource;
+use App\Http\Resources\TaskResource;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -68,14 +70,19 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-
-        // $query = $project->tasks();
-        // $tasks = $user->tasks()->get();
+        // $tasks = DB::table('tasks')
+        //     ->where('assigned_user_id', $user->id)
+        //     ->get();
+        $success = session('success');
+        $tasks = Task::where('assigned_user_id', $user->id)->get();
 
         return inertia('User/Show', [
             'user' => new CrudUserResource($user),
-            // 'tasks' => TaskResource::collection($tasks),
             'queryParams' => request()->query() ?: null,
+            // 'tasks' => $tasks,
+            'tasks' => TaskResource::collection($tasks),
+            'success' => $success,
+
         ]);
     }
 
@@ -87,6 +94,7 @@ class UserController extends Controller
         return inertia('User/Edit', [
             'user' => new CrudUserResource($user),
         ]);
+
     }
 
     /**
@@ -133,4 +141,5 @@ class UserController extends Controller
         return to_route('user.index')
             ->with('success', "User \"$name\" was successfully deleted");
     }
+
 }
