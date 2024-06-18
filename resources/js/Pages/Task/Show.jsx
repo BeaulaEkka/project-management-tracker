@@ -29,18 +29,18 @@ export default function Show({ auth, task, users, queryParams, success }) {
     >
       <Head title={`Task "${task.name}"`} />
       {/* <pre>{JSON.stringify(task)}</pre> */}
-      <div className="py-12">
+      <div className="py-8">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900 dark:text-gray-100">
-              <div className="relative">
+              <div className="relative border border-gray-100 shadow-sm rounded-md">
                 <RandomBackground
                   project={task}
                   shape="rectangle"
                   width="100%"
                   height="250px"
                 />
-                <span className="absolute top-[40%] left-1/2 transform -translate-x-1/2 lg:text-4xl text-lg px-4 capitalize  bg-black/50 rounded-md py-4 text-center font-bold">
+                <span className="absolute top-[40%] left-1/2 transform -translate-x-1/2 lg:text-4xl text-lg px-4 capitalize  bg-black/50 rounded-md py-4 text-center font-bold text-white/80">
                   {task.name}
                 </span>
               </div>

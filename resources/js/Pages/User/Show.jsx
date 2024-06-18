@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
 import {
@@ -8,6 +8,7 @@ import {
   TASK_STATUS_TEXT_MAP,
 } from "@/constants";
 import { ProgressBar } from "@/Components/ProgressBar";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Show({
   auth,
@@ -36,6 +37,17 @@ export default function Show({
     router.delete(route("task.destroy", task.id));
   };
 
+  const notify = () => toast("success");
+
+  useEffect(() => {
+    if (success) {
+      {
+        notify;
+      }
+      toast.success(success);
+    }
+  }, [success]);
+
   return (
     <AuthenticatedLayout
       user={auth.user}
@@ -47,13 +59,10 @@ export default function Show({
     >
       <Head title={`User "${user.name}"`} />
 
-      <div className="py-12 ">
+      <div className="py-8 ">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          {success && (
-            <div className="bg-emerald-500 mb-4 py-2 px-4 text-white rounded">
-              {success}
-            </div>
-          )}
+          <ToastContainer />
+
           <div className="bg-white  dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg ">
             <div className="w-full p-6  text-gray-900 dark:text-gray-100  ">
               <div className="flex gap-5 flex-wrap-reverse justify-between ">
@@ -92,7 +101,7 @@ export default function Show({
           </div>
         </div>
       </div>
-      <div className="py-12 ">
+      <div className="">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div className="flex justify-between px-6 pt-4">
@@ -108,9 +117,9 @@ export default function Show({
             </div>
 
             <div className="p-4 text-gray-900 dark:text-gray-100">
-              <div className="overflow-auto">
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
+              <div className="overflow-auto rounded-t-md">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+                  <thead className="text-xs text-gray-500 uppercase bg-gray-800 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
                     <tr className="text-nowrap ">
                       <th className="px-3 py-3">ID</th>
                       <th className="px-3 py-3">Project Name</th>
@@ -127,16 +136,17 @@ export default function Show({
                     {tasks.data.map((task) => (
                       <tr
                         key={task.id}
-                        className="text-nowwrap hover:bg-slate-600
+                        className="text-nowwrap hover:bg-emerald-100 dark:hover:bg-slate-600
                         transition-colors duration-300 bg-white border-b dark:bg-gray-800  dark:border-gray-700
-
                         "
                       >
-                        <td className="px-3 py-3">{task.id}</td>
-                        <td className="px-3 py-3">
+                        <td className="px-3 py-3 text-gray-600 dark:text-gray-300 ">
+                          {task.id}
+                        </td>
+                        <td className="px-3 py-3 ">
                           <Link
                             href={route("project.show", task.project.id)}
-                            className="hover:underline hover:font-semibold text-gray-300 text-nowrap"
+                            className="hover:underline hover:font-semibold text-gray-600 dark:text-gray-300 text-nowrap"
                           >
                             {task.project.name}
                           </Link>
@@ -144,7 +154,7 @@ export default function Show({
                         <td className="px-3 py-3 capitalize">
                           <Link
                             href={route("task.show", task.id)}
-                            className="hover:underline hover:font-semibold text-gray-300 text-nowrap"
+                            className="hover:underline hover:font-semibold text-gray-600 dark:text-gray-300 text-nowrap"
                           >
                             {task.name}
                           </Link>
@@ -160,10 +170,10 @@ export default function Show({
                             {TASK_STATUS_TEXT_MAP[task.status]}
                           </span>
                         </td>
-                        <td className="px-3 py-2 text-nowrap">
+                        <td className="px-3 py-2 text-nowrap text-gray-600 dark:text-gray-300">
                           {task.created_at}
                         </td>
-                        <td className="px-3 py-2 text-nowrap">
+                        <td className="px-3 py-2 text-nowrap text-gray-600 dark:text-gray-300">
                           {task.due_date}
                         </td>
                         <td className="px-3 py-2 text-nowrap">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router, usePage } from "@inertiajs/react";
 import { Pagination } from "@/Components/Pagination";
@@ -8,9 +8,16 @@ import SelectInput from "@/Components/SelectInput";
 import { TableHeading } from "@/Components/TableHeading";
 import { ProgressBar } from "@/Components/ProgressBar";
 import RandomBackground from "@/Components/RandomBackground";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Index({ auth, projects, queryParams = null, success }) {
   const { errors } = usePage().props;
+
+  useEffect(() => {
+    if (success) {
+      toast.success(success);
+    }
+  }, [success]);
 
   queryParams = queryParams || {};
   const searchFieldChanged = (name, value) => {
@@ -66,8 +73,8 @@ export default function Index({ auth, projects, queryParams = null, success }) {
     <AuthenticatedLayout
       user={auth.user}
       header={
-        <div className="flex justify-between">
-          <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <div className="flex justify-between  items-center">
+          <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight ">
             Projects
           </h2>{" "}
           <Link
@@ -82,20 +89,12 @@ export default function Index({ auth, projects, queryParams = null, success }) {
       <Head title="Projects" />{" "}
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          {success && (
-            <div className="bg-emerald-500 mb-4 py-2 px-4 text-white rounded">
-              {success}
-              {errors.error && (
-                <div className="alert alert-danger">{errors.error}</div>
-              )}
-            </div>
-          )}
+          <ToastContainer />
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900 dark:text-gray-100">
-              {/* <pre>{JSON.stringify(projects, undefined, 2)}</pre> */}
-              <div className="overflow-auto">
+              <div className="overflow-auto rounded-t-md">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
+                  <thead className="text-xs text-gray-400 uppercase bg-gray-800  dark:bg-gray-700 dark:text-gray-400 dark:border-b dark:border-gray-500 ">
                     <tr className="text-nowrap ">
                       <TableHeading
                         title="id"
@@ -106,7 +105,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         ID
                       </TableHeading>
 
-                      <th className="px-3 py-3">Image </th>
+                      <th className="px-2 py-1">Image </th>
 
                       <TableHeading
                         title="name"
@@ -150,7 +149,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         sort_direction={queryParams.sort_direction}
                         sortChanged={sortChanged}
                       >
-                        <div className="w-32 ml-2 ">Timeline</div>
+                        <div className="w-25 ml-4 ">Timeline</div>
                       </TableHeading>
 
                       <TableHeading
@@ -165,14 +164,13 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                     </tr>
                   </thead>
 
-                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 bprder-gray-500">
-                    <tr className="text-nowwrap">
-                      <th className="px-3 py-3"></th>
-                      <th className="px-3 py-3"></th>
-                      <th className="px-3 py-3"></th>
-                      <th className="px-3 py-3">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-200 ">
+                    <tr>
+                      <th className="px-2 py-2 "></th>
+                      <th className="px-2 py-2 "></th>
+                      <th className="px-2 py-2 ">
                         <TextInput
-                          className="w-full "
+                          className="block w-full px-3"
                           defaultValue={queryParams.name}
                           placeholder="Project Name"
                           onBlur={(e) =>
@@ -181,9 +179,9 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                           onKeyPress={(e) => onKeyPress("name", e)}
                         />
                       </th>
-                      <th className="px-3 py-3">
+                      <th className="px-3 py-3   ">
                         <SelectInput
-                          className="w-full "
+                          className="block w-full "
                           defaultValue={queryParams.status}
                           queryParams={queryParams}
                           onChange={(e) =>
@@ -197,10 +195,11 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                           <option value="in_Progress">In Progress</option>
                         </SelectInput>
                       </th>
-                      <th className="px-3 py-3"></th>
-                      <th className="px-3 py-3"></th>
-                      <th className="px-3 py-3"></th>
-                      <th className="px-3 py-3"></th>
+                      <th className="px-3 py-3 "></th>
+                      <th className="px-3 py-3 "></th>
+                      <th className="px-3 py-3 "></th>
+                      <th className="px-3 py-3 "></th>
+                      <th className="px-3 py-3 "></th>
                     </tr>
                   </thead>
 
@@ -210,8 +209,10 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                         key={project.id}
                       >
-                        <td className="px-3 py-2">{project.id}</td>
-                        <td className="px-3 py-2 rounded-full w-12 h-12 object-cover">
+                        <td className="px-3 py-2 text-gray-700 dark:text-gray-400">
+                          {project.id}
+                        </td>
+                        <td className="px-2 py-2 rounded-full w-12 h-12 object-cover">
                           {/* No image needed here */}
                           <RandomBackground
                             project={project}
@@ -225,13 +226,13 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                           {" "}
                           <Link
                             href={route("project.show", project.id)}
-                            className="hover:underline hover:font-semibold text-gray-300 text-nowrap"
+                            className="hover:underline hover:font-semibold text-gray-700 dark:text-gray-400 text-nowrap"
                           >
                             {project.name}
                           </Link>
                         </td>
 
-                        <td className="px-3 py-2">
+                        <td className="px-3 py-2 ">
                           <span
                             className={
                               "px-3 py-1 rounded text-white text-nowrap " +
@@ -243,10 +244,10 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                           </span>
                         </td>
 
-                        <td className="px-3 py-2 text-nowrap">
+                        <td className="px-3 py-2 text-nowrap text-gray-700 dark:text-gray-400">
                           {project.created_at}
                         </td>
-                        <td className="px-3 py-2 text-nowrap">
+                        <td className="px-3 py-2 text-nowrap text-gray-700 dark:text-gray-400">
                           {project.due_date}
                         </td>
 
@@ -272,7 +273,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         <td className="px-3 py-2 text-nowrap">
                           <Link
                             href={route("project.edit", project.id)}
-                            className="text-blue-600 dark:text-blue-500 hover:underline mx-1"
+                            className="text-emerald-600 dark:text-blue-500 hover:underline mx-1"
                           >
                             Edit
                           </Link>

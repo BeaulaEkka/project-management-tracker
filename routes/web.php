@@ -31,4 +31,6 @@ Route::post('/tasks/store', [TaskController::class, 'store'])->name('task.store'
 
 Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('task.edit');
 
+// Route::get('/api/tasks', [TaskController::class, 'getTasks']);
+
 require __DIR__ . '/auth.php';

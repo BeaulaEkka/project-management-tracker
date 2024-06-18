@@ -4,8 +4,6 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
-// import TextAreaInput from "@/Components/TextAreaInput";
-// import SelectInput from "@/Components/SelectInput";
 
 export default function Create({ auth }) {
   const { data, setData, post, processing, errors, reset } = useForm({
@@ -36,8 +34,7 @@ export default function Create({ auth }) {
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-            <div className="p-6 text-gray-900 dark:text-gray-100">
-              Form Create
+            <div className="p-6 text-gray-900 dark:text-gray-100 ">
               <form
                 action=""
                 className="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg"
@@ -50,7 +47,7 @@ export default function Create({ auth }) {
                     type="file"
                     name="image"
                     // value={data.image}
-                    className="mt-1 block w-full"
+                    className="mt-1 block w-full border"
                     onChange={(e) => setData("image", e.target.files[0])}
                   />
                   <InputError message={errors.image} className="mt-2" />
@@ -118,27 +115,10 @@ export default function Create({ auth }) {
                       type="date"
                       name="joining_date"
                       value={data.joining_date}
-                      className="mt-1 block w-full"
+                      className="mt-1 block w-full date-input"
                       onChange={(e) => setData("joining_date", e.target.value)}
                     />{" "}
                     {/* Style the calendar icon */}
-                    <svg
-                      class="w-6 h-6 text-gray-800 dark:text-gray-500 absolute right-0 top-0 mt-2 mr-2  pointer-events-none"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"
-                      />
-                    </svg>
                   </div>
                   <InputError message={errors.joining_date} className="mt-2" />
                   {/* Position */}

@@ -1,0 +1,8 @@
+/* resources/css/custom.css */
+.date-input::-webkit-calendar-picker-indicator {
+    filter: invert(0); /* Default to no inversion */
+}
+
+.dark .date-input::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Invert in dark mode */
+}

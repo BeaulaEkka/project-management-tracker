@@ -9,7 +9,7 @@ export const ProgressBar = ({ progress, status }) => {
       status === "completed"
         ? "gray"
         : progress <= 0.3
-        ? "green"
+        ? "rgb(16 185 129)"
         : progress <= 0.7
         ? "orange"
         : "red",
@@ -20,12 +20,12 @@ export const ProgressBar = ({ progress, status }) => {
 
   return (
     <div className="w-68 h-5">
-      <div className="w-full h-full bg-gray-700 rounded-lg relative">
+      <div className="w-full h-full bg-gray-700/50 rounded-full relative shadow-inner">
         <div
           style={innerBarStyle}
           className="px-3 h-full flex justify-center items-center"
         >
-          <span className="text-xs italic font-semibold text-white">
+          <span className="text-xs italic font-semibold text-gray-100 shadow-inner">
             {progressText}
           </span>
         </div>

@@ -5,7 +5,7 @@ const PieChartComponent = ({ data }) => {
   const customTheme = {
     labels: {
       text: {
-        fontSize: 16, // Increase font size for labels
+        fontSize: 18, // Increase font size for labels
       },
     },
     legends: {
@@ -28,8 +28,8 @@ const PieChartComponent = ({ data }) => {
   };
 
   return (
-    <div className="h-[550px]">
-      <h3 className=" font-bold text-center mt-4 mb-0 text-xl text-gray-500 dark:text-gray-300">
+    <div className="h-[350px]">
+      <h3 className=" font-bold text-center mt-4 mb-0 text-md text-gray-500 dark:text-gray-300">
         Total Tasks
       </h3>
       <ResponsivePie
@@ -74,13 +74,13 @@ const PieChartComponent = ({ data }) => {
         fill={[
           {
             match: {
-              id: "completed",
+              id: "Completed",
             },
             id: "dots",
           },
           {
             match: {
-              id: "in_Progress",
+              id: "In Progress",
             },
             id: "lines",
           },

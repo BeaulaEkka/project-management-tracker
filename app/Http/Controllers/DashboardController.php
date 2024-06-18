@@ -44,9 +44,9 @@ class DashboardController extends Controller
             ->count();
 
         $pieData = [
-            ['id' => 'pending', 'label' => 'Pending', 'value' => $totalPendingTasks, 'color' => '#fb7185'],
-            ['id' => 'in_Progress', 'label' => 'In Progress', 'value' => $totalInProgressTasks, 'color' => '#22d3ee'],
-            ['id' => 'completed', 'label' => 'Completed', 'value' => $totalCompletedTasks, 'color' => '#14b8a6'],
+            ['id' => 'Pending', 'label' => 'Pending', 'value' => $totalPendingTasks, 'color' => '#fb7185'],
+            ['id' => 'In Progress', 'label' => 'In Progress', 'value' => $totalInProgressTasks, 'color' => '#22d3ee'],
+            ['id' => 'Completed', 'label' => 'Completed', 'value' => $totalCompletedTasks, 'color' => '#34d399'],
         ];
 
         $activeTasks = Task::query()
@@ -56,28 +56,6 @@ class DashboardController extends Controller
 
         $activeTasks = TaskResource::collection($activeTasks);
         $activeTaskCount = $activeTasks->count();
-
-        // // Get the top 5 performers for the current month
-        // $topPerformers = DB::table('tasks')
-        //     ->select('assigned_user_id', DB::raw('count(*) as total_completed_tasks'))
-        //     ->where('status', 'completed')
-        //     ->whereMonth('updated_at', Carbon::now()->month)
-        //     ->whereYear('updated_at', Carbon::now()->year)
-        //     ->groupBy('assigned_user_id')
-        //     ->orderByDesc('total_completed_tasks')
-        //     ->limit(5)
-        //     ->get();
-
-        // // Include user details for the top performers
-        // $topPerformers = $topPerformers->map(function ($performer) {
-        //     $user = User::find($performer->assigned_user_id);
-        //     return [
-        //         'user_id' => $performer->assigned_user_id,
-        //         'user_name' => $user->name,
-        //         'image_url' => $user->image_path,
-        //         'total_completed_tasks' => $performer->total_completed_tasks,
-        //     ];
-        // });
 
         $topPerformers = Task::select('assigned_user_id', DB::raw('count(*) as total_completed_tasks'))
             ->where('status', 'completed')
@@ -109,10 +87,14 @@ class DashboardController extends Controller
             return [
                 'user_id' => $performer->assigned_user_id,
                 'user_name' => $user->name,
+
                 'image_url' => $imageUrl, // Use the constructed image URL
                 'total_completed_tasks' => $performer->total_completed_tasks,
+
             ];
         });
+
+        $dashboardImageUrl = asset('images/3dpapers.png');
 
         return inertia('Dashboard', [
             'totalPendingTasks' => $totalPendingTasks,
@@ -131,7 +113,10 @@ class DashboardController extends Controller
                 'image_url' => $user->image_url,
                 'position' => $user->position,
             ],
+            'dashboardImageUrl' => $dashboardImageUrl,
 
         ]);
+
     }
+
 }

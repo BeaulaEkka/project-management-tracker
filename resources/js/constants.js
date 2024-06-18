@@ -1,6 +1,6 @@
 export const PROJECT_STATUS_CLASS_MAP = {
-  pending: "bg-rose-600",
-  in_Progress: "bg-amber-400 ",
+  pending: "bg-amber-500",
+  in_Progress: "bg-blue-500 ",
   completed: "bg-green-500",
 };
 export const PROJECT_STATUS_TEXT_MAP = {
@@ -20,7 +20,7 @@ export const TASK_STATUS_TEXT_MAP = {
 };
 export const TASK_PRIORITY_CLASS_MAP = {
   low: "bg-gray-600",
-  medium: "bg-amber-600",
+  medium: "bg-amber-500",
   high: "bg-red-600",
 };
 export const TASK_PRIORITY_TEXT_MAP = {

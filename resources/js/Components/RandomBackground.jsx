@@ -20,7 +20,7 @@ function RandomBackground({
     width,
     height,
     backgroundColor: project.image_path ? "transparent" : backgroundColor,
-    borderRadius: shape === "round" ? "50%" : "",
+    borderRadius: shape === "round" ? "50%" : ".5rem",
     overflow: "hidden",
   };
 
@@ -28,13 +28,13 @@ function RandomBackground({
     width: "100%",
     height: "100%",
     objectFit: "cover",
+    borderRadius: ".5rem",
   };
 
   return (
     <div style={styles}>
       {project.image_path ? (
         <img src={project.image_path} alt={project.name} style={imageStyles} />
-        
       ) : (
         shape !== "rectangle" && (
           <span className=" text-sm text-white dark:text-gray-800 font-semibold">

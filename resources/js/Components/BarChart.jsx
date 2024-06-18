@@ -8,10 +8,10 @@ import { ResponsiveBar } from "@nivo/bar";
 // website examples showcase many properties,
 // you'll often use just a few of them.
 const BarChart = ({ data /* see data tab */ }) => (
-  <div style={{ height: "250px" }}>
+  <div className="h-[350px]">
     <ResponsiveBar
       data={data}
-      keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
+      keys={["Completed", "sandwich", "fries"]}
       indexBy="country"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}

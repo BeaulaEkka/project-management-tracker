@@ -11,7 +11,7 @@ export const TableHeading = ({
 }) => {
   return (
     <th onClick={(e) => sortChanged(title)}>
-      <div className="px-3 py-3 flex items-center justify-between gap-1 cursor-pointer">
+      <div className="px-2 py-1 flex items-center justify-between gap-1 cursor-pointer">
         {children}
         {sortable && (
           <div>
@@ -19,7 +19,7 @@ export const TableHeading = ({
               className={
                 "w-4 " +
                 (sort_field === title && sort_direction === "asc"
-                  ? "text-white"
+                  ? "text-emerald-400"
                   : "")
               }
             />
@@ -27,7 +27,7 @@ export const TableHeading = ({
               className={
                 "w-4 -mt-2 " +
                 (sort_field === title && sort_direction === "desc"
-                  ? "text-white"
+                  ? "text-emerald-400"
                   : "")
               }
             />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import InputLabel from "@/Components/InputLabel";
@@ -6,6 +6,7 @@ import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import TextAreaInput from "@/Components/TextAreaInput";
 import SelectInput from "@/Components/SelectInput";
+import "../../../css/custom.css";
 
 export default function Edit({ auth, task, projects, users }) {
   const { query } = usePage().props;
@@ -64,7 +65,6 @@ export default function Edit({ auth, task, projects, users }) {
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900 dark:text-gray-100 ">
-              <h1 className="px-8">Edit {task.name} Form</h1>
               <form
                 action=""
                 className="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg"
@@ -106,7 +106,7 @@ export default function Edit({ auth, task, projects, users }) {
                     id="task_image_path"
                     type="file"
                     name="image"
-                    className="mt-1 block w-full"
+                    className="mt-1 block w-full border"
                     onChange={handleImageChange}
                   />
                   <InputError message={errors.image} className="mt-2" />
@@ -148,34 +148,17 @@ export default function Edit({ auth, task, projects, users }) {
                     value="Task Deadline"
                     className="mt-1"
                   />
-                  <div className="relative">
-                    <TextInput
-                      id="task_due_date"
-                      type="date"
-                      name="due_date"
-                      value={data.due_date}
-                      className="mt-1 block w-full"
-                      isFocused={true}
-                      onChange={(e) => setData("due_date", e.target.value)}
-                    />
-                    <svg
-                      className="w-6 h-6 text-gray-800 dark:text-gray-500 absolute right-0 top-0 mt-2 mr-2 pointer-events-none"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"
-                      />
-                    </svg>
-                  </div>
+
+                  <TextInput
+                    id="task_due_date"
+                    type="date"
+                    name="due_date"
+                    value={data.due_date}
+                    className="mt-1 block w-full date-input"
+                    isFocused={true}
+                    onChange={(e) => setData("due_date", e.target.value)}
+                  />
+
                   <InputError message={errors.due_date} className="mt-2" />
 
                   <InputLabel
@@ -217,12 +200,12 @@ export default function Edit({ auth, task, projects, users }) {
                   <InputLabel
                     htmlFor="assigned_user_id"
                     value="Assigned User"
-                    className="mt-1"
+                    className="mt-1 capitalize"
                   />
                   <SelectInput
                     name="assigned_user_id"
                     value={data.assigned_user_id}
-                    className="mt-1 block w-full"
+                    className="mt-1 block w-full capitalize"
                     onChange={(e) =>
                       setData("assigned_user_id", e.target.value)
                     }

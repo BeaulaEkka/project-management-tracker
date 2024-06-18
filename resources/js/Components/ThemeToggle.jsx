@@ -16,7 +16,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+      className="p-2 rounded bg-gray-50 dark:bg-gray-900/25 text-gray-500 dark:text-gray-400 shadow-inner"
     >
       {isDarkMode ? (
         <svg
@@ -40,7 +40,7 @@ export default function ThemeToggle() {
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="size-6"
+          class="size-5"
         >
           <path
             stroke-linecap="round"
