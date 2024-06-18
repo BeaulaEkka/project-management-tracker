@@ -1,6 +1,6 @@
 # Project Management Tracker
 
-![Dashboard](https://github.com/yourusername/yourrepository/blob/main/public/dashboard.png?raw=true)
+![Dashboard](https://github.com/BeaulaEkka/project-management-tracker/blob/main/public/images/dashboard.jpeg)
 
 # Table of contents
 
