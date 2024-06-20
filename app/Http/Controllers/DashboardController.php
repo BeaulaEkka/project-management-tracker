@@ -93,8 +93,11 @@ class DashboardController extends Controller
 
             ];
         });
-
+        {/** images for login screen */}
         $dashboardImageUrl = asset('images/3dpapers.png');
+        // $logingirljump = asset('images/girljumping.png');
+        // $loginRocket = asset('images/login-rocket.png');
+        // $loginWoman = asset('images/login-woman.png');
 
         return inertia('Dashboard', [
             'totalPendingTasks' => $totalPendingTasks,
@@ -114,6 +117,9 @@ class DashboardController extends Controller
                 'position' => $user->position,
             ],
             'dashboardImageUrl' => $dashboardImageUrl,
+            // 'logingirljump' => $logingirljump,
+            // 'loginRocket' => $loginRocket,
+            // 'loginWoman'=>$loginWoman,
 
         ]);
 

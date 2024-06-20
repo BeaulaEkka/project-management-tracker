@@ -221,11 +221,11 @@ export default function Create({ auth, user }) {
       }
     >
       <Head title="Edit User" />
-      <div className="py-12">
+      <div className="py-8">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900 dark:text-gray-100">
-              Form Edit
+              <h1 className="px-8 font-bold">Form Edit</h1>
               <form
                 action=""
                 className="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg"
@@ -233,7 +233,7 @@ export default function Create({ auth, user }) {
               >
                 {user.image_path && (
                   <div>
-                    <img src={user.image_path} alt="" className="mb-4 w-52" />
+                    <img src={user.image_path} alt="" className="mb-4 w-52 shadow-md  rounded-md ring-gray-200" />
                   </div>
                 )}
                 <div className="mt-4">
@@ -242,7 +242,7 @@ export default function Create({ auth, user }) {
                     id="user_image_path"
                     type="file"
                     name="image"
-                    className="mt-1 block w-full"
+                    className="mt-1 block w-full border"
                     onChange={(e) => setData("image", e.target.files[0])}
                   />
                   <InputError message={errors.image} className="mt-2" />
@@ -299,7 +299,7 @@ export default function Create({ auth, user }) {
                     htmlFor="user_joining_date"
                     value="Joining Date"
                   />
-                
+
                   <TextInput
                     id="user_joining_date"
                     type="date"

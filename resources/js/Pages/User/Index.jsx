@@ -8,8 +8,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Index({ auth, users, queryParams = null, success }) {
-  
-
   queryParams = queryParams || {};
 
   const searchFieldChanged = (name, value) => {
@@ -72,7 +70,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
       }
     >
       <Head title="Users" />
-      <div className="py-8 ">
+      <div className="py-8">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
           <ToastContainer />
 
@@ -170,8 +168,8 @@ export default function Index({ auth, users, queryParams = null, success }) {
                   <tbody>
                     {users.data.map((user) => (
                       <tr
-                        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-700 dark:text-gray-400"
                         key={user.id}
+                        className="hover:bg-gray-100 hover:text-gray-900 hover:dark:bg-gray-700 hover:dark:text-gray-400 border-b dark:border-gray-700"
                       >
                         <td className="px-3 py-2">{user.id}</td>
                         <td className="px-3 py-2 text-gray-700 dark:text-gray-400 ">
@@ -186,7 +184,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
                           {" "}
                           <Link
                             href={route("user.show", user.id)}
-                            className="hover:underline hover:font-semibold text-gray-300 text-nowrap capitalize text-gray-700 dark:text-gray-400"
+                            className="hover:underline hover:font-semibold  text-nowrap capitalize text-gray-700 dark:text-gray-400"
                           >
                             {user.name}
                           </Link>

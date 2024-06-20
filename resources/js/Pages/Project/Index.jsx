@@ -87,7 +87,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
       }
     >
       <Head title="Projects" />{" "}
-      <div className="py-12">
+      <div className="py-8 shadow-md">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <ToastContainer />
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -206,7 +206,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                   <tbody>
                     {projects.data.map((project) => (
                       <tr
-                        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
                         key={project.id}
                       >
                         <td className="px-3 py-2 text-gray-700 dark:text-gray-400">

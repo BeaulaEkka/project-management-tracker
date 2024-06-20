@@ -34,9 +34,9 @@ export default function Login({ status, canResetPassword }) {
         <div className="mb-4 font-medium text-sm text-green-600">{status}</div>
       )}
 
-      <form onSubmit={submit}>
+      <form onSubmit={submit} className=" p-4">
         <div>
-          <div className="text-gray-800 dark:text-gray-500 mb-4">
+          <div className="text-gray-600  mb-4">
             <div className="flex">
               <p className="font-bold">User Name: </p>
               <p className="ml-2">admin@example.com</p>
@@ -47,14 +47,14 @@ export default function Login({ status, canResetPassword }) {
               <p className="ml-2">Admin@123</p>
             </div>
           </div>
-          <InputLabel htmlFor="email" value="Email" />
+          <InputLabel htmlFor="email" value="Email"  />
 
           <TextInput
             id="email"
             type="email"
             name="email"
             value={data.email}
-            className="mt-1 block w-full dark:text-gray-200"
+            className="mt-1 block w-full "
             autoComplete="username"
             isFocused={true}
             onChange={(e) => setData("email", e.target.value)}
@@ -86,17 +86,17 @@ export default function Login({ status, canResetPassword }) {
               checked={data.remember}
               onChange={(e) => setData("remember", e.target.checked)}
             />
-            <span className="ms-2 text-sm text-gray-600 dark:text-gray-400">
+            <span className="ms-2 text-sm text-gray-600  ">
               Remember me
             </span>
           </label>
         </div>
 
-        <div className="flex items-center justify-end mt-4">
+        <div className="flex flex-col-reverse items-center justify-end mt-4 ">
           {canResetPassword && (
             <Link
               href={route("password.request")}
-              className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+              className="underline text-sm text-gray-500  hover:text-gray-900  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 "
             >
               Forgot your password?
             </Link>

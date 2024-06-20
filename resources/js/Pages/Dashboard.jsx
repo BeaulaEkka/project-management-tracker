@@ -40,24 +40,24 @@ export default function Dashboard({
     >
       <Head title="Dashboard" />
 
-      <div className="py-12">
+      <div className="py-8">
         <div className="grid grid-cols-8 gap-4 max-w-7xl lg:px-8 px-2 mx-auto  relative ">
           {/**welcome */}
-          <div className=" bg-emerald-400 dark:bg-gray-800  h-32  rounded-md col-span-8 flex  shadow-inner ">
+          <div className="h-32 rounded-md col-span-8 flex shadow-md bg-gradient-to-r from-emerald-500 to-emerald-300 dark:bg-gradient-to-r dark:from-gray-800 dark:to-gray-700">
             <div className="p-4 flex items-center self-center ">
-              <div className="place-self-center  ring-2 ring-offset-2 ring-white rounded-sm ">
+              <div className="place-self-center  ring-2 ring-offset-3 ring-white rounded-md ">
                 <img
                   src={auth.image_url}
                   alt={auth.user}
                   height={192}
                   width={92}
-                  className="rounded-sm object-cover shadow-sm"
+                  className="rounded-md object-cover shadow-2xl"
                 />
               </div>
 
-              <div className="p-4 flex flex-col items-start justify-center h-full text-white dark:text-gray-400 capitalize">
+              <div className="p-4 flex flex-col items-start justify-center h-full text-white dark:text-gray-100 capitalize">
                 <p className="lg:text-lg text-md  ">Hello!</p>{" "}
-                <p className="md:text-5xl text-xl font-bold  ">
+                <p className="md:text-5xl text-xl font-bold   ">
                   {auth.user.name}!
                 </p>
                 <p className="">
@@ -78,13 +78,13 @@ export default function Dashboard({
 
           {/**pieChart */}
           <div className="col-span-8 lg:col-span-4 h-full">
-            <div className="bg-white dark:bg-gray-800   overflow-hidden shadow-sm sm:rounded-lg lg:col-span-2 lg:h-[367px] rounded-md">
+            <div className="bg-white dark:bg-gray-800   overflow-hidden shadow-sm sm:rounded-lg lg:col-span-2 lg:h-[382px] rounded-md">
               <PieChartComponent data={pieData} />
             </div>
           </div>
 
           {/**tasks numbers blocks  */}
-          <div className="lg:col-span-2  col-span-8">
+          <div className="lg:col-span-2  col-span-8 md:col-span-8 lg:h-[382px] flex flex-grow">
             <MyProgressTasks
               myCompletedTasks={myCompletedTasks}
               myInProgressTasks={myInProgressTasks}
@@ -93,7 +93,7 @@ export default function Dashboard({
             />
           </div>
           {/**top performers */}
-          <div className="lg:col-span-2  col-span-8 lg:h-[350px]">
+          <div className="lg:col-span-2  col-span-8 lg:h-[382px]">
             <div className="bg-white dark:bg-gray-800   overflow-hidden shadow-sm sm:rounded-lg rounded-md  ">
               <TopPerformers topPerformers={topPerformers} />
             </div>

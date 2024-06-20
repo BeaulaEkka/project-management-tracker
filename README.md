@@ -3,9 +3,7 @@
 ![Dashboard](https://github.com/BeaulaEkka/project-management-tracker/blob/main/public/images/dashboard.jpeg)
 ![Dashboard](https://github.com/BeaulaEkka/project-management-tracker/blob/main/public/images/dark-dashboard.jpeg)
 
-# Table of contents
-
-Project workflow and git commits
+###  Project workflow and git commits
 
 -   [x] Installation
 -   [x] [Set up Models, Factories, tables](#set-up-models-factories-migrations-and-tables)
@@ -20,6 +18,7 @@ Project workflow and git commits
 -   [x] [useForm(from Inertia)](#useformfrom-inertia)
 -   [x] [File Storage ( handle image upload)](#file-storage--handle-image-upload)
 -   [x] [ThemeToggle](#theme-toggle-dark-and-light)
+-   [x] [React Tostify](#)
 
 ## #Set up Models,Factories,Tables
 
