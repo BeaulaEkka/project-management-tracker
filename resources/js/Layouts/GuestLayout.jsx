@@ -14,7 +14,7 @@ export default function Guest({ children }) {
                 className="self-center"
               />
               <p className=" mt-2 text-emerald-700 md:text-lg text-md font-black px-8 text-center">
-                Laravel Project Management Tracker
+                Laravel-React-Inertia-SQL Project Management Tracker
               </p>
             </div>
           </Link>
