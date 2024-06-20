@@ -43,7 +43,7 @@ export default function Dashboard({
       <div className="py-8">
         <div className="grid grid-cols-8 gap-4 max-w-7xl lg:px-8 px-2 mx-auto  relative ">
           {/**welcome */}
-          <div className="h-32 rounded-md col-span-8 flex shadow-md bg-gradient-to-r from-emerald-500 to-emerald-300 dark:bg-gradient-to-r dark:from-gray-800 dark:to-gray-700">
+          <div className="h-32 rounded-md col-span-8 flex shadow-md bg-gradient-to-l from-emerald-500 to-emerald-800 dark:bg-gradient-to-r dark:from-gray-800 dark:to-gray-700">
             <div className="p-4 flex items-center self-center ">
               <div className="place-self-center  ring-2 ring-offset-3 ring-white rounded-md ">
                 <img
