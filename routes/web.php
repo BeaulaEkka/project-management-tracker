@@ -10,14 +10,12 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])
-        ->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::resource('project', ProjectController::class);
-Route::get('/task/my-tasks', [TaskController::class, 'myTasks'])
-    ->name('task.myTasks');
-Route::resource('task', TaskController::class);
+Route::get('/task/my-tasks', [TaskController::class, 'myTasks'])->name('task.myTasks');
+Route::resource('task', TaskController::class); // This line already includes 'task.store' route.
 Route::resource('user', UserController::class);
 
 Route::middleware('auth')->group(function () {
@@ -26,9 +24,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// In routes/web.php or routes/api.php
-Route::post('/tasks/store', [TaskController::class, 'store'])->name('task.store')->middleware('auth');
-
-Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('task.edit');
+// Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('task.edit');
 
 require __DIR__ . '/auth.php';
