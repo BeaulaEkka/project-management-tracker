@@ -24,6 +24,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('task.edit');
-
 require __DIR__ . '/auth.php';
