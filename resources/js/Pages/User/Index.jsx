@@ -77,10 +77,10 @@ export default function Index({ auth, users, queryParams = null, success }) {
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900 dark:text-gray-100">
               {/* <pre>{JSON.stringify(users, undefined, 2)}</pre> */}
-              <div className="overflow-auto">
+              <div className="overflow-auto rounded-lg">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   <thead className="text-xs text-gray-400 uppercase bg-gray-800 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
-                    <tr className="text-nowrap ">
+                    <tr className="text-nowrap">
                       <TableHeading
                         title="id"
                         sort_field={queryParams.sort_field}
@@ -137,7 +137,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
                       <th className="px-3 py-3"></th>
                       <th className="px-3 py-3">
                         <TextInput
-                          className="w-full "
+                          className="w-full dark:bg-gray-900 dark:border-0 font-thin"
                           defaultValue={queryParams.name}
                           placeholder="User Name"
                           onBlur={(e) =>
@@ -149,7 +149,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
 
                       <th className="px-3 py-3">
                         <TextInput
-                          className="w-full "
+                          className="w-full dark:bg-gray-900 dark:border-0 font-thin"
                           defaultValue={queryParams.name}
                           placeholder="User Email"
                           onBlur={(e) =>
@@ -176,7 +176,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
                           <img
                             src={user.image_path}
                             alt={user.name}
-                            className=" rounded-full w-full h-full object-cover lg:w-12 lg:h-12"
+                            className=" rounded-full w-full h-full object-cover lg:w-12 lg:h-12 shadow-md"
                           />
                         </td>
 

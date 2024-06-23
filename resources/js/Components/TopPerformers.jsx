@@ -25,11 +25,11 @@ export const TopPerformers = ({ topPerformers }) => {
       <h3 className=" font-bold text-center  text-md text-gray-500 dark:text-gray-300 py-2 ">
         Top Performers - {currentMonthName} {currentYear}
       </h3>
-      <div className="flex flex-wrap lg:h-[325px] ">
-        {topPerformers.map((performer) => (
+      <div className="flex flex-wrap lg:h-[325px]">
+        {topPerformers.map((performer,index) => (
           <div
-            key={performer.id}
-            className="dark:bg-gray-900/50 bg-gray-100  flex flex-wrap items-center rounded-lg my-2 mx-2 shadow-sm flex-grow "
+            key={performer.id || index}
+            className="dark:bg-gray-900/50 bg-gray-100  flex flex-wrap items-center rounded-lg my-2 mx-2 shadow-sm flex-grow"
           >
             <div className="px-4 py-2 flex gap-2 items-center flex-grow justify-between ">
               <div className="flex justify-center items-center w-[71px] h-[71px]  ">

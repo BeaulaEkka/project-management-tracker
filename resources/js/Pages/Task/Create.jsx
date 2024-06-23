@@ -9,13 +9,11 @@ import SelectInput from "@/Components/SelectInput";
 
 export default function Create({ auth, projects, users }) {
   const { query } = usePage().props || {};
-  console.log("usePage props:", usePage().props); // Debug line
 
   // Fallback check using window.location.search if query is not found
   const searchParams = new URLSearchParams(window.location.search);
   const fromUserPage =
     query?.fromUserPage === "1" || searchParams.get("fromUserPage") === "1";
-  console.log("fromUserPage:", fromUserPage); // Debug line
 
   const { data, setData, post, processing, errors, reset, success } = useForm({
     image: "",
@@ -25,7 +23,6 @@ export default function Create({ auth, projects, users }) {
     due_date: "",
     fromUserPage,
   });
-  console.log("success-create task from", success);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -82,7 +79,7 @@ export default function Create({ auth, projects, users }) {
                     type="file"
                     name="image"
                     // value={data.image}
-                    className="mt-1 block w-full border"
+                    className="mt-1 block w-full border p-1 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
                     onChange={(e) => setData("image", e.target.files[0])}
                   />
                   <InputError message={errors.image} className="mt-2" />
@@ -93,8 +90,7 @@ export default function Create({ auth, projects, users }) {
                     type="text"
                     name="name"
                     value={data.name}
-                    className="mt-1 block w-full"
-                    isFocused={true}
+                    className="mt-1 block w-full dark:bg-gray-900 dark:border-gray-700"
                     onChange={(e) => setData("name", e.target.value)}
                   />{" "}
                   <InputError message={errors.name} className="mt-2" />
@@ -109,23 +105,19 @@ export default function Create({ auth, projects, users }) {
                     name="description"
                     value={data.description}
                     className="mt-1 block w-full"
-                    isFocused={true}
                     onChange={(e) => setData("description", e.target.value)}
                   />{" "}
                   <InputError message={errors.description} className="mt-2" />
                   {/* task_due_date */}
                   <InputLabel htmlFor="task_due_date" value="Task Deadline" />
-                  <div className="relative">
-                    <TextInput
-                      id="task_due_date"
-                      type="Date"
-                      name="due_date"
-                      value={data.due_date}
-                      className="mt-1 block w-full date-input"
-                      isFocused={true}
-                      onChange={(e) => setData("due_date", e.target.value)}
-                    />
-                  </div>
+                  <TextInput
+                    id="task_due_date"
+                    type="date"
+                    name="due_date"
+                    value={data.due_date}
+                    className="mt-1 block w-full date-input dark:bg-gray-900 dark:border-gray-700"
+                    onChange={(e) => setData("due_date", e.target.value)}
+                  />
                   <InputError message={errors.due_date} className="mt-2" />
                   {/* task_status */}
                   <InputLabel htmlFor="task_status" value="Task Status" />

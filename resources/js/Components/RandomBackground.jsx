@@ -17,6 +17,7 @@ function RandomBackground({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+
     width,
     height,
     backgroundColor: project.image_path ? "transparent" : backgroundColor,
@@ -32,12 +33,12 @@ function RandomBackground({
   };
 
   return (
-    <div style={styles}>
+    <div style={styles}className="border border-gray-200 dark:border-gray-900 shadow-md">
       {project.image_path ? (
         <img src={project.image_path} alt={project.name} style={imageStyles} />
       ) : (
         shape !== "rectangle" && (
-          <span className=" text-sm text-white dark:text-gray-800 font-semibold">
+          <span className=" text-sm text-white dark:text-gray-600 font-bold">
             {project.name.slice(0, 2).toUpperCase()}
           </span>
         )

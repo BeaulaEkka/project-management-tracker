@@ -55,13 +55,13 @@ export default function Edit({ auth, task, projects, users }) {
     <AuthenticatedLayout
       user={auth.user}
       header={
-        <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight capitalize">
           Edit {task.name}
         </h2>
       }
     >
       <Head title="Edit Task" />
-      <div className="py-12">
+      <div className="py-8">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900 dark:text-gray-100 ">
@@ -100,13 +100,13 @@ export default function Edit({ auth, task, projects, users }) {
                   <InputLabel
                     htmlFor="task_image_path"
                     value="Task Image"
-                    className="mt-1"
+                    className="mt-1 "
                   />
                   <TextInput
                     id="task_image_path"
                     type="file"
                     name="image"
-                    className="mt-1 block w-full border"
+                    className="mt-1 block w-full border dark:border-gray-700 dark:bg-gray-900 p-1"
                     onChange={handleImageChange}
                   />
                   <InputError message={errors.image} className="mt-2" />
@@ -121,7 +121,7 @@ export default function Edit({ auth, task, projects, users }) {
                     type="text"
                     name="name"
                     value={data.name}
-                    className="mt-1 block w-full"
+                    className="mt-1 block w-full dark:bg-gray-900 border dark:border-gray-700"
                     isFocused={true}
                     onChange={(e) => setData("name", e.target.value)}
                   />
@@ -154,7 +154,7 @@ export default function Edit({ auth, task, projects, users }) {
                     type="date"
                     name="due_date"
                     value={data.due_date}
-                    className="mt-1 block w-full date-input"
+                    className="mt-1 block w-full date-input dark:bg-gray-900 border dark:border-gray-700"
                     isFocused={true}
                     onChange={(e) => setData("due_date", e.target.value)}
                   />

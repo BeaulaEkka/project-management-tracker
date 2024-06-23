@@ -216,7 +216,7 @@ export default function Create({ auth, user }) {
       user={auth.user}
       header={
         <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-          Edit "{user.name}"
+          Edit : {user.name}
         </h2>
       }
     >
@@ -233,7 +233,11 @@ export default function Create({ auth, user }) {
               >
                 {user.image_path && (
                   <div>
-                    <img src={user.image_path} alt="" className="mb-4 w-52 shadow-md  rounded-md ring-gray-200" />
+                    <img
+                      src={user.image_path}
+                      alt=""
+                      className="mb-4 w-52 shadow-md  rounded-md ring-gray-200 "
+                    />
                   </div>
                 )}
                 <div className="mt-4">
@@ -242,7 +246,7 @@ export default function Create({ auth, user }) {
                     id="user_image_path"
                     type="file"
                     name="image"
-                    className="mt-1 block w-full border"
+                    className="mt-1 block w-full border dark:border-gray-700 dark:bg-gray-900 p-1"
                     onChange={(e) => setData("image", e.target.files[0])}
                   />
                   <InputError message={errors.image} className="mt-2" />
@@ -252,7 +256,7 @@ export default function Create({ auth, user }) {
                     type="text"
                     name="name"
                     value={data.name}
-                    className="mt-1 block w-full"
+                    className="mt-1 block w-full dark:border-gray-700 dark:bg-gray-900"
                     isFocused={true}
                     onChange={(e) => setData("name", e.target.value)}
                   />
@@ -260,10 +264,10 @@ export default function Create({ auth, user }) {
                   <InputLabel htmlFor="user_email" value="User Email" />
                   <TextInput
                     id="user_email"
-                    type="text"
+                    type="email"
                     name="email"
                     value={data.email}
-                    className="mt-1 block w-full"
+                    className="mt-1 block w-full dark:border-gray-700 dark:bg-gray-900"
                     onChange={(e) => setData("email", e.target.value)}
                   />
                   <InputError message={errors.email} className="mt-2" />
@@ -273,7 +277,7 @@ export default function Create({ auth, user }) {
                     type="password"
                     name="password"
                     value={data.password}
-                    className="mt-1 block w-full"
+                    className="mt-1 block w-full dark:border-gray-700 dark:bg-gray-900"
                     onChange={(e) => setData("password", e.target.value)}
                   />
                   <InputError message={errors.password} className="mt-2" />
@@ -286,7 +290,7 @@ export default function Create({ auth, user }) {
                     type="password"
                     name="password_confirmation"
                     value={data.password_confirmation}
-                    className="mt-1 block w-full"
+                    className="mt-1 block w-full dark:border-gray-700 dark:bg-gray-900"
                     onChange={(e) =>
                       setData("password_confirmation", e.target.value)
                     }
@@ -305,7 +309,7 @@ export default function Create({ auth, user }) {
                     type="date"
                     name="joining_date"
                     value={data.joining_date}
-                    className="mt-1 block w-full date-input"
+                    className="mt-1 block w-full date-input dark:border-gray-700 dark:bg-gray-900"
                     onChange={(e) => setData("joining_date", e.target.value)}
                   />
 
@@ -316,7 +320,7 @@ export default function Create({ auth, user }) {
                     type="text"
                     name="position"
                     value={data.position}
-                    className="mt-1 block w-full"
+                    className="mt-1 block w-full dark:border-gray-700 dark:bg-gray-900"
                     onChange={(e) => setData("position", e.target.value)}
                   />
                   <InputError message={errors.position} className="mt-2" />

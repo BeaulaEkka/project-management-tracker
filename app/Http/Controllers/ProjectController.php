@@ -136,6 +136,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if (!$project) {
+            return redirect()->route('project.index')->with('error', 'Project not found.');
+        }
         $name = $project->name;
 
         $project->delete();

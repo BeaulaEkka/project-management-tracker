@@ -31,7 +31,7 @@ export default function Create({ auth }) {
       }
     >
       <Head title="Create new Project" />
-      <div className="py-12">
+      <div className="py-8">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg ">
             <div className="p-6 text-gray-900 dark:text-gray-100 ">
@@ -51,7 +51,7 @@ export default function Create({ auth }) {
                     type="file"
                     name="image"
                     // value={data.image}
-                    className="mt-1 block w-full border"
+                    className="mt-1 block w-full border dark:border-gray-700 p-1 dark:bg-gray-900"
                     onChange={(e) => setData("image", e.target.files[0])}
                   />
                   <InputError message={errors.image} className="mt-2" />
@@ -62,7 +62,7 @@ export default function Create({ auth }) {
                     type="text"
                     name="name"
                     value={data.name}
-                    className="mt-1 block w-full"
+                    className="mt-1 block w-full dark:border-gray-700 dark:bg-gray-900"
                     isFocused={true}
                     onChange={(e) => setData("name", e.target.value)}
                   />{" "}
@@ -90,10 +90,10 @@ export default function Create({ auth }) {
                   <div className="relative">
                     <TextInput
                       id="project_due_date"
-                      type="Date"
+                      type="date"
                       name="due_date"
                       value={data.due_date}
-                      className="mt-1 block w-full date-input"
+                      className="mt-1 block w-full date-input dark:border-gray-700 dark:bg-gray-900"
                       isFocused={true}
                       onChange={(e) => setData("due_date", e.target.value)}
                     />{" "}

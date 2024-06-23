@@ -78,9 +78,9 @@ export default function TasksTable({
     <>
       <ToastContainer />
       <div className="overflow-auto rounded-t-md">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  rounded-top-md ">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  rounded-top-md">
           <thead className="text-xs text-gray-400 uppercase bg-gray-800  dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
-            <tr className="text-nowrap  ">
+            <tr className="text-nowrap">
               <TableHeading
                 title="id"
                 sort_field={queryParams.sort_field}
@@ -145,14 +145,14 @@ export default function TasksTable({
             </tr>
           </thead>
 
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 bprder-gray-500">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
             <tr className="text-nowwrap">
               <th className="px-3 py-3"></th>
               <th className="px-3 py-3"></th>
-              <th className="px-3 py-3"></th>
+
               <th className="px-3 py-3">
                 <TextInput
-                  className="w-full Capitalize"
+                  className="w-full Capitalize dark:bg-gray-900 dark:border-0 placeholder:text-gray-400 font-light"
                   defaultValue={queryParams.name}
                   placeholder="Task Name"
                   onBlur={(e) => searchFieldChanged("name", e.target.value)}
@@ -161,12 +161,10 @@ export default function TasksTable({
               </th>
               <th className="px-3 py-3">
                 <SelectInput
-                  className="w-full "
+                  className="w-full"
                   defaultValue={queryParams.status}
-                  queryParams={queryParams}
                   onChange={(e) => searchFieldChanged("status", e.target.value)}
                 >
-                  {" "}
                   <option value="0">Select Status</option>
                   <option value="pending">Pending</option>
                   <option value="completed">Completed</option>
@@ -176,6 +174,7 @@ export default function TasksTable({
               <th className="px-3 py-3"></th>
               <th className="px-3 py-3"></th>
               {!hideProjectColumn && <th className="px-3 py-3"></th>}
+              <th className="px-3 py-3"></th>
               <th className="px-3 py-3"></th>
               <th className="px-3 py-3"></th>
             </tr>
@@ -202,18 +201,16 @@ export default function TasksTable({
                   <td className="px-2 py-2 capitalize text-gray-700 dark:text-gray-400 text-nowrap">
                     {task.project.name}
                   </td>
-                )}{" "}
-                <td>
+                )}
+                <td className="px-2 py-2 capitalize text-gray-700 dark:text-gray-400">
                   <Link
                     href={route("task.show", task.id)}
-                    className="hover:underline hover:font-semibold text-gray-300 text-nowrap "
+                    className="hover:underline hover:font-semibold text-gray-700 dark:text-gray-400 text-nowrap"
                   >
-                    <th className="px-2 py-2 capitalize text-gray-700 dark:text-gray-400">
-                      {task.name}
-                    </th>
+                    {task.name}
                   </Link>
                 </td>
-                <td className="px-1 py-2 w-[250px] ">
+                <td className="px-1 py-2 w-[250px]">
                   <span
                     className={
                       "px-3 py-1 rounded text-white text-nowrap " +
@@ -223,7 +220,7 @@ export default function TasksTable({
                     {TASK_STATUS_TEXT_MAP[task.status] || "Unknown Status"}
                   </span>
                 </td>
-                <td className="px-2 py-2 text-nowrap text-gray-700 dark:text-gray-400 ">
+                <td className="px-2 py-2 text-nowrap text-gray-700 dark:text-gray-400">
                   {task.created_at}
                 </td>
                 <td className="px-1 py-2 text-nowrap text-gray-700 dark:text-gray-400">

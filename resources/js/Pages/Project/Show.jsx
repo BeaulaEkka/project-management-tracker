@@ -131,7 +131,7 @@ export default function Show({ auth, project, tasks, queryParams, success }) {
 
               <TasksTable
                 tasks={tasks}
-                queryParams={queryParams}
+                // queryParams={queryParams}
                 hideProjectColumn={true}
                 success={success}
               />

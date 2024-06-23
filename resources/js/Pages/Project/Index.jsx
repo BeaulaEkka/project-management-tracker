@@ -170,7 +170,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                       <th className="px-2 py-2 "></th>
                       <th className="px-2 py-2 ">
                         <TextInput
-                          className="block w-full px-3"
+                          className="block w-full px-3 placeholder:text-gray-400"
                           defaultValue={queryParams.name}
                           placeholder="Project Name"
                           onBlur={(e) =>
@@ -181,9 +181,9 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                       </th>
                       <th className="px-3 py-3   ">
                         <SelectInput
-                          className="block w-full "
+                          className="block w-full"
                           defaultValue={queryParams.status}
-                          queryParams={queryParams}
+                          // queryParams={queryParams}
                           onChange={(e) =>
                             searchFieldChanged("status", e.target.value)
                           }

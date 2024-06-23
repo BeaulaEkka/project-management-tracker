@@ -33,7 +33,7 @@ export default function Show({ auth, task, users, queryParams, success }) {
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900 dark:text-gray-100">
-              <div className="relative border border-gray-100 shadow-sm rounded-md">
+              <div className="relative border border-gray-100 dark:border-0 shadow-sm rounded-md">
                 <RandomBackground
                   project={task}
                   shape="rectangle"

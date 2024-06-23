@@ -29,7 +29,7 @@ export default function Create({ auth, project }) {
       user={auth.user}
       header={
         <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-          Edit "{project.name}""
+          Edit : {project.name}
         </h2>
       }
     >
@@ -47,7 +47,7 @@ export default function Create({ auth, project }) {
                   <div>
                     <img
                       src={project.image_path}
-                      alt=""
+                      alt={project.name}
                       className="mb-4 w-52"
                     />
                   </div>
@@ -62,7 +62,7 @@ export default function Create({ auth, project }) {
                     type="file"
                     name="image"
                     // value={data.image}
-                    className="mt-1 block w-full border"
+                    className="mt-1 block w-full border dark:border-gray-700 dark:bg-gray-900 p-1"
                     onChange={(e) => setData("image", e.target.files[0])}
                   />
                   <InputError message={errors.image} className="mt-2" />
@@ -72,7 +72,7 @@ export default function Create({ auth, project }) {
                     type="text"
                     name="name"
                     value={data.name}
-                    className="mt-1 block w-full"
+                    className="mt-1 block w-full dark:border-gray-700 dark:bg-gray-900"
                     isFocused={true}
                     onChange={(e) => setData("name", e.target.value)}
                   />{" "}
@@ -99,10 +99,10 @@ export default function Create({ auth, project }) {
                   <div className="relative">
                     <TextInput
                       id="project_due_date"
-                      type="Date"
+                      type="date"
                       name="due_date"
                       value={data.due_date}
-                      className="mt-1 block w-full date-input"
+                      className="mt-1 block w-full date-input dark:border-gray-700 dark:bg-gray-900"
                       isFocused={true}
                       onChange={(e) => setData("due_date", e.target.value)}
                     />{" "}
