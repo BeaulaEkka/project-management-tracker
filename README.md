@@ -2,9 +2,13 @@
 Live Website: https://beaula-management.nl
 
 **All Tasks Page:** View all tasks associated with different projects. Use filtering options to find specific tasks.
+
 **Creating New Projects:** Use the form provided to create, update, or delete projects and tasks.
+
 **File Storage:** Upload images or other files related to tasks or projects.
+
 **Theme Toggle:** Switch between light and dark themes using the theme toggle button.
+
 **Real-time Alerts:** Receive instant notifications for different actions using React Toastify.
 
 ![Dashboard](https://github.com/BeaulaEkka/project-management-tracker/blob/main/public/images/dashboard.jpeg)
