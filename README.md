@@ -1,15 +1,14 @@
 # Project Management Tracker
 Live Website: https://beaula-management.nl
-#Usage:
-**All Tasks Page:** View all tasks associated with different projects. Use filtering options to find specific tasks.
 
-**Creating New Projects:** Use the form provided to create, update, or delete projects and tasks.
+This is a project management web application built with Laravel. This app helps users manage projects and tasks effectively, with features like task filtering, creating, deleting, editing, project assignment, mark complete or pending, edit status, pagination, image uploads, theme toggling, and notifications. This project also a dashboard where it reflects completed tasks, total open and closed tasks, champions of the month etc.
 
-**File Storage:** Upload images or other files related to tasks or projects.
-
-**Theme Toggle:** Switch between light and dark themes using the theme toggle button.
-
-**Real-time Alerts:** Receive instant notifications for different actions using React Toastify.
+# Usage:
+**All Tasks Page:** View all tasks associated with different projects. Use filtering options to find specific tasks.  
+**Creating New Projects:** Use the form provided to create, update, or delete projects and tasks.  
+**File Storage:** Upload images or other files related to tasks or projects.  
+**Theme Toggle:** Switch between light and dark themes using the theme toggle button.  
+**Real-time Alerts:** Receive instant notifications for different actions using React Toastify.  
 
 ![Dashboard](https://github.com/BeaulaEkka/project-management-tracker/blob/main/public/images/dashboard.jpeg)
 ![Dashboard](https://github.com/BeaulaEkka/project-management-tracker/blob/main/public/images/dark-dashboard.jpeg)
@@ -31,7 +30,7 @@ Live Website: https://beaula-management.nl
 -   [x] [ThemeToggle](#theme-toggle-dark-and-light)
 -   [x] [React Tostify](#)
 
-#Features
+# Features
 
 **CRUD Operations:** Create, Read, Update, and Delete projects and tasks.  
 **Seeding:** Pre-populate the database with sample data.  
@@ -55,14 +54,4 @@ Live Website: https://beaula-management.nl
 |     |      |             |            |        |          |            |            |
 |     |      |             |            |        |          |            |            |
 
-# Set up Controllers
 
-Created TaskController, ProjectController, UserController with --model=<MODELNAME> --requests --resource
-
-## Creating New Project(CRUD)
-
-## useForm(from Inertia)
-
-## File Storage ( handle image upload)
-
-## Theme Toggle (dark and light)
