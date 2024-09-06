@@ -1,6 +1,6 @@
 # Project Management Tracker
 Live Website: https://beaula-management.nl
-
+#Usage:
 **All Tasks Page:** View all tasks associated with different projects. Use filtering options to find specific tasks.
 
 **Creating New Projects:** Use the form provided to create, update, or delete projects and tasks.
@@ -31,23 +31,15 @@ Live Website: https://beaula-management.nl
 -   [x] [ThemeToggle](#theme-toggle-dark-and-light)
 -   [x] [React Tostify](#)
 
-## #Set up Models,Factories,Tables
+#Features
 
-## Set up Models, Factories, migrations and tables
-
-## Seeding
-
-## set-up-views
-
-## Set up routes
-
-## Pagination
-
-## Filtering
-
-use of forwardRef() and where()
-
-## All Tasks Page
+**CRUD Operations:** Create, Read, Update, and Delete projects and tasks.
+    **Seeding:** Pre-populate the database with sample data.
+    **Pagination:** Efficiently navigate through large sets of tasks.
+    **Filtering:** Filter tasks based on various criteria.
+    **Image Upload:** Handle file storage and image uploads.
+    **Dynamic Theming:** Toggle between light and dark themes.
+    **Real-time Notifications:** Use React Toastify for user notifications.
 
 ### Tasks
 
