@@ -34,12 +34,12 @@ Live Website: https://beaula-management.nl
 #Features
 
 **CRUD Operations:** Create, Read, Update, and Delete projects and tasks.
-    **Seeding:** Pre-populate the database with sample data.
-    **Pagination:** Efficiently navigate through large sets of tasks.
-    **Filtering:** Filter tasks based on various criteria.
-    **Image Upload:** Handle file storage and image uploads.
-    **Dynamic Theming:** Toggle between light and dark themes.
-    **Real-time Notifications:** Use React Toastify for user notifications.
+**Seeding:** Pre-populate the database with sample data.
+**Pagination:** Efficiently navigate through large sets of tasks.
+**Filtering:** Filter tasks based on various criteria.
+**Image Upload:** Handle file storage and image uploads.
+**Dynamic Theming:** Toggle between light and dark themes.
+**Real-time Notifications:** Use React Toastify for user notifications.
 
 ### Tasks
 
